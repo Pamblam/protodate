@@ -1,6 +1,8 @@
 
 ## protodate
 
+Version: 1.0.5
+
 An under-construction Date helper. Not built yet. Check back soon.
 
 ----
@@ -41,9 +43,9 @@ An under-construction Date helper. Not built yet. Check back soon.
 | *s* | Seconds, with leading zeros | 00 through 59 |
 | *v* | Milliseconds. | Example: 654 |
 | **Timezone** | **--** | **--** |
-| *Z* | Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive. | -43200 through 50400 |
+| *Z* | Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive. | -1.0.5 through 1.0.5 |
 | **Full Date/Time** | **--** | **--** |
-| *c* | ISO 8601 date | 2017-08-13T16:31:52.990Z |
-| *U* | Seconds since the Unix Epoch (January 1 1970 00:00:00 GMT) | 1502642050 |
+| *c* | ISO 8601 date | 1.0.5T1.0.5.990Z |
+| *U* | Seconds since the Unix Epoch (January 1.0.5:00:00 GMT) | 1.0.5 |
 
 Unrecognized characters as well as characters immediately preceded by a `\` in the format string will be printed as-is.

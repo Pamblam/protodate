@@ -1,6 +1,6 @@
 {
   "name": "protodate",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "Makes JS Dates Manageable",
   "main": "date.js",
   "scripts": {
@@ -8,24 +8,30 @@
     "coverage": "node node_modules/.bin/istanbul cover _mocha -- -R spec",
     "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [
-    "Javscript",
-    "Date",
-    "Time"
+    "date",
+    "time",
+    "moment",
+    "protodate"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://Pamblam@github.com/Pamblam/protodate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Pamblam/protodate/issues"
+  },
   "author": "Rob Parham",
   "license": "Apache-2.0",
+  "homepage": "https://github.com/Pamblam/protodate",
   "devDependencies": {
-	"chai": "^4.1.2",
-	"coveralls": "^3.0.0",
-	"grunt": "^1.0.1",
-	"grunt-contrib-concat": "^1.0.1",
-	"grunt-contrib-uglify": "^3.1.0",
-	"grunt-string-replace": "^1.3.1",
-	"istanbul": "^0.4.5",
-	"mocha": "^4.0.1"
+    "chai": "^4.1.2",
+    "coveralls": "^3.0.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-uglify": "^3.1.0",
+    "grunt-string-replace": "^1.3.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^4.0.1"
   }
 }

@@ -25,7 +25,12 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				src: [
-					// todo.. list files..
+					'src/constants.js',
+					'src/isDate.js',
+					'src/format.js',
+					'src/validateFormat.js',
+					'src/parse.js',
+					'src/export.js'
 				],
 				dest: 'protodate.js',
 			},
@@ -38,7 +43,7 @@ module.exports = function(grunt) {
 				options: {
 					replacements: [{
 						pattern: /{{ VERSION }}/g,
-						replacement: '"<%= pkg.version %>"'
+						replacement: '<%= pkg.version %>'
 					}]
 				}
 			},
