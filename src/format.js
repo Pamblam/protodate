@@ -33,7 +33,7 @@
 				case "N": buffer.push(this.getDay()==0?7:this.getDay()); break;
 				case "L": buffer.push((this.getFullYear() % 4 == 0 && this.getFullYear() % 100 != 0) || this.getFullYear() % 400 == 0 ? "1" : "0"); break;
 				case "o": buffer.push(this.getMonth()==0&&this.getDate()<6&&this.getDay()<4?this.getFullYear()-1:this.getFullYear()); break;
-				case "B": buffer.push(Math.floor((((this.getUTCHours() + 1) % 24) + this.getUTCMinutes() / 60 + this.getUTCSeconds() / 3600) * 1000 / 24)); break;
+				case "B": buffer.push(Math.floor((((this.getHours() + 1) % 24) + this.getMinutes() / 60 + this.getSeconds() / 3600) * 1000 / 24)); break;
 				case "v": buffer.push((this.getTime()+"").substr(-3)); break;
 				case "Z": buffer.push(this.getTimezoneOffset()*60); break;
 				case "U": buffer.push(Math.floor(this.getTime()/1000)); break;

@@ -68,6 +68,8 @@ describe('Formatter tests', function (){
 	it('Should format', function(){
 		expect(d.format("o")=="2007").to.be.true;
 	});
+	
+	// these 3 are broken
 	it('Should format', function(){
 		expect(d.format("B")=="787").to.be.true;
 	});
@@ -77,6 +79,7 @@ describe('Formatter tests', function (){
 	it('Should format', function(){
 		expect(d.format("U")=="1181584445").to.be.true;
 	});
+	
 	it('Should format', function(){
 		expect(d.format("A")=="PM").to.be.true;
 	});
