@@ -5,7 +5,7 @@
  */
 (function(){
 	"use strict";
-	Date.prototype.parse = function(dateStr, formatStr){
+	Date.parse = function(dateStr, formatStr){
 		if(!Date.validateFormat(dateStr, formatStr)) return false;
 		var year = new Date().getFullYear(), 
 			month = 0, day = 1, hours = 0, 
@@ -13,7 +13,7 @@
 			am=true, hr24=false;
 		for(var i=0; i<formatStr.length; i++){
 			switch(formatStr[i]){
-				case "\\": dateStr = dateStr.substr(2); i++; break;
+				case "\\": dateStr = dateStr.substr(2); i=i+2; break;
 				case "Y": year = dateStr.substr(0,4); dateStr = dateStr.substr(4); break;
 				case "y":
 					var cy = (""+new Date().getFullYear()).substr(2);

@@ -6,6 +6,6 @@
 (function(){
 	"use strict";
 	Date.isDate = function(date){
-		return !isNaN(date.getTime());
+		return 'function' === typeof date.getTime && !isNaN(date.getTime());
 	};
 })();

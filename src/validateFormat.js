@@ -9,8 +9,8 @@
 		for(var i=0; i<formatStr.length; i++){
 			switch(formatStr[i]){
 				case "\\": 
-					if(!/^\\/.test(dateStr) || formatStr[++i] !== dateStr[1]) return false;
-					dateStr = dateStr.substr(2);
+					if(formatStr[++i] !== dateStr[0]) return false;
+					dateStr = dateStr.substr(1);
 					break;
 				case "Y":
 					if(!/^(\d){4}/.test(dateStr)) return false;
