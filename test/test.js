@@ -54,10 +54,31 @@ describe('Formatter tests', function (){
 		expect(d.format("D M jS Y h:i:s")=="Mon Jun 11th 2007 01:54:05").to.be.true;
 	});
 	it('Should format', function(){
-		expect(d.format("t w N L o B")=="30 1 1 0 2007 787").to.be.true;
+		expect(d.format("t")=="30").to.be.true;
 	});
 	it('Should format', function(){
-		expect(d.format("Z U A")=="14400 1181584445 PM").to.be.true;
+		expect(d.format("w")=="1").to.be.true;
+	});
+	it('Should format', function(){
+		expect(d.format("N")=="1").to.be.true;
+	});
+	it('Should format', function(){
+		expect(d.format("L")=="0").to.be.true;
+	});
+	it('Should format', function(){
+		expect(d.format("o")=="2007").to.be.true;
+	});
+	it('Should format', function(){
+		expect(d.format("B")=="787").to.be.true;
+	});
+	it('Should format', function(){
+		expect(d.format("Z")=="14400").to.be.true;
+	});
+	it('Should format', function(){
+		expect(d.format("U")=="1181584445").to.be.true;
+	});
+	it('Should format', function(){
+		expect(d.format("A")=="PM").to.be.true;
 	});
 	it('Should format', function(){
 		expect(d.format("W z")=="24 162").to.be.true;
