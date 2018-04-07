@@ -1,5 +1,5 @@
 /**
- * protodate - v1.0.22
+ * protodate - v1.0.25
  * Makes JS Dates Manageable
  * @author Rob Parham
  * @website https://github.com/Pamblam/protodate
@@ -11,7 +11,7 @@
 	"use strict";
 	Date.MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	Date.DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	Date.PROTODATE_VERSION = '1.0.22';
+	Date.PROTODATE_VERSION = '1.0.25';
 })();
 
 /**

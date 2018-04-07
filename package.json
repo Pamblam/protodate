@@ -1,6 +1,6 @@
 {
   "name": "protodate",
-  "version": "1.0.22",
+  "version": "1.0.25",
   "description": "Makes JS Dates Manageable",
   "main": "date.js",
   "scripts": {
