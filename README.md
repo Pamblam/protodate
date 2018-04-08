@@ -43,9 +43,9 @@ An under-construction Date helper. Not built yet. Check back soon.
 | *s* | Seconds, with leading zeros | 00 through 59 | ✔ |
 | *v* | Milliseconds with leading zeros - 3 Digits. | Example: 654 | ✔ |
 | **Timezone** | **--** | **--** | **--** |
-| *Z* | Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive. | -1.0.25 through 1.0.25 | ✕ |
+| *Z* | Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive. | -1.0.26 through 1.0.26 | ✕ |
 | **Full Date/Time** | **--** | **--** | **--** |
-| *c* | ISO 8601 date | 1.0.25T1.0.25.990Z | ✕ |
-| *U* | Seconds since the Unix Epoch (January 1.0.25:00:00 GMT) | 1.0.25 | ✕ |
+| *c* | ISO 8601 date | 1.0.26T1.0.26.990Z | ✕ |
+| *U* | Seconds since the Unix Epoch (January 1.0.26:00:00 GMT) | 1.0.26 | ✕ |
 
 Unrecognized characters as well as characters immediately preceded by a `\` in the format string will be printed as-is.

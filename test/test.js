@@ -3,6 +3,8 @@ var expect = require('chai').expect;
 const Date = require('../protodate.js');
 process.env.TZ = 'America/New_York';
 
+console.log("tzo: ", new Date().getTimezoneOffset());
+
 describe('Validator tests', function (){
 	it('Should validate', function(){
 		expect(Date.validateFormat("Fri 12/5/99 4:30:24.090 pm", "D m/j/y g:i:s.v a")).to.be.true;
@@ -69,6 +71,8 @@ describe('Formatter tests', function (){
 	it('Should format', function(){
 		expect(d.format("o")=="2007").to.be.true;
 	});
+	
+	// these 3 are broken
 	it('Should format', function(){
 		expect(d.format("B")=="787").to.be.true;
 	});
@@ -78,6 +82,7 @@ describe('Formatter tests', function (){
 	it('Should format', function(){
 		expect(d.format("U")=="1181584445").to.be.true;
 	});
+	
 	it('Should format', function(){
 		expect(d.format("A")=="PM").to.be.true;
 	});
