@@ -1,5 +1,5 @@
 /**
- * protodate - v1.0.33
+ * protodate - v1.1.1
  * Makes JS Dates Manageable
  * @author Rob Parham
  * @website https://github.com/Pamblam/protodate
@@ -11,7 +11,13 @@
 	"use strict";
 	Date.MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	Date.DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	Date.PROTODATE_VERSION = '1.0.33';
+	Date.PROTODATE_VERSION = '1.1.1';
+	Date.MILLISECOND = 1;
+	Date.SECOND = 1000;
+	Date.MINUTE = 60000;
+	Date.HOUR = 3600000;
+	Date.DAY = 86400000;
+	Date.YEAR = 31536000000;
 })();
 
 /**
@@ -403,16 +409,16 @@
 	Date.prototype.elapsedSince = function (date) {
 		if(!Date.isDate(date)) return false;
 		var ms = Math.abs(this.getTime() - date.getTime()), o={};
-		o.y = Math.floor(ms / (3600000 * 24 * 365));
-		ms -= o.y * (3600000 * 24 * 365);
-		o.d = Math.floor(ms / (3600000 * 24));
-		ms -= o.d * (3600000 * 24);
-		o.h = Math.floor(ms / 3600000);
-		ms -= o.h * 3600000;
-		o.m = Math.floor(ms / 60000);
-		ms -= o.m * 60000;
-		o.s = Math.floor(ms / 1000);
-		ms -= o.s * 1000;
+		o.y = Math.floor(ms / Date.YEAR);
+		ms -= o.y * Date.YEAR;
+		o.d = Math.floor(ms / Date.DAY);
+		ms -= o.d * Date.DAY;
+		o.h = Math.floor(ms / Date.HOUR);
+		ms -= o.h * Date.HOUR;
+		o.m = Math.floor(ms / Date.MINUTE);
+		ms -= o.m * Date.MINUTE;
+		o.s = Math.floor(ms / Date.SECOND);
+		ms -= o.s * Date.SECOND;
 		o.ms = ms;
 		o.verbose = function() {
 			var str = [];
@@ -426,6 +432,30 @@
 		};
 		o.clock = function(ms){ return [o.h, o.m, ms ? o.s+"."+(("00" + o.ms).substr(-3)):+o.s].join(':') };
 		return o;
+	};
+})();
+
+/**
+ * Add a period of time
+ * @returns Date obj
+ */
+(function(){
+	"use strict";
+	Date.prototype.minus = function(quantity, period){
+		this.setTime(this.getTime() - (quantity * period));
+		return this;
+	};
+})();
+
+/**
+ * Add a period of time
+ * @returns Date obj
+ */
+(function(){
+	"use strict";
+	Date.prototype.plus = function(quantity, period){
+		this.setTime(this.getTime() + (quantity * period));
+		return this;
 	};
 })();
 

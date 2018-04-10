@@ -5,6 +5,22 @@
 
 An under-construction Date helper. Not built yet. Check back soon.
 
+**ToDos**
+
+ - ~~elapsed time~~
+ - ~~formatting~~
+ - ~~date type verification~~
+ - ~~format string validation~~
+ - ~~string parsing~~
+ - ~~addition and subtraction~~
+ - 100% code coverage
+ - write docs in wiki
+ - make header logo
+ - finish writing the readme
+ - make parser intelligent
+ - do momentjs comparison
+
+
 ----
 
 | format character  | Description | Example returned values | Parsable |
@@ -43,9 +59,9 @@ An under-construction Date helper. Not built yet. Check back soon.
 | *s* | Seconds, with leading zeros | 00 through 59 | ✔ |
 | *v* | Milliseconds with leading zeros - 3 Digits. | Example: 654 | ✔ |
 | **Timezone** | **--** | **--** | **--** |
-| *Z* | Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive. | -1.0.33 through 1.0.33 | ✕ |
+| *Z* | Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive. | -1.1.1 through 1.1.1 | ✕ |
 | **Full Date/Time** | **--** | **--** | **--** |
-| *c* | ISO 8601 date | 1.0.33T1.0.33.990Z | ✕ |
-| *U* | Seconds since the Unix Epoch (January 1.0.33:00:00 GMT) | 1.0.33 | ✕ |
+| *c* | ISO 8601 date | 1.1.1T1.1.1.990Z | ✕ |
+| *U* | Seconds since the Unix Epoch (January 1.1.1:00:00 GMT) | 1.1.1 | ✕ |
 
 Unrecognized characters as well as characters immediately preceded by a `\` in the format string will be printed as-is.

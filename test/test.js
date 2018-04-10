@@ -220,3 +220,13 @@ describe('Elapsed tests', function (){
 		expect(d1.elapsedSince('farts')).to.be.false;
 	});
 });
+
+describe('Add and Substract tests', function (){
+	var d = new Date(2007,5,11,13,54,5,123);
+	it('Should add', function(){
+		expect(d.plus(3, Date.DAY).format("m/d/y g:i a") == "06/14/07 1:54 pm").to.be.true;
+	});
+	it('Should substract', function(){
+		expect(d.minus(3, Date.DAY).format("m/d/y g:i a") == "06/11/07 1:54 pm").to.be.true;
+	});
+});
