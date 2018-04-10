@@ -53,7 +53,19 @@ describe('Parser tests', function (){
 	it('Should parse', function(){
 		expect(Date.isDate(Date.parse("Wednes Jan 5th 2007 04:30:24 pm", "D M jS Y h:i:s"))).to.be.true;
 	});
+	it('Should parse', function(){
+		expect(Date.isDate(Date.parse("01", "y"))).to.be.true;
+	});
+	it('Should parse', function(){
+		expect(Date.isDate(Date.parse("12", "g"))).to.be.true;
+	});
+	it('Should parse', function(){
+		expect(Date.isDate(Date.parse("12", "h"))).to.be.true;
+	});
 	
+	it('Should not parse', function(){
+		expect(Date.isDate(Date.parse("12", "S"))).to.be.false;
+	});
 	it('Should not parse', function(){
 		expect(Date.isDate(Date.parse("\\Y", "\\F"))).to.be.false;
 	});
@@ -157,6 +169,27 @@ describe('Formatter tests', function (){
 	});
 	it('Should format', function(){
 		expect(new Date(2007,5,3,13,54,5,123).format('jS')=="3rd").to.be.true;
+	});
+	it('Should format', function(){
+		expect(new Date(2007,5,3,2,54,5,123).format('g')=="2").to.be.true;
+	});
+	it('Should format', function(){
+		expect(new Date(2007,5,3,2,54,5,123).format('h')=="02").to.be.true;
+	});
+	it('Should format', function(){
+		expect(new Date(2007,5,3,2,54,5,123).format('N')==7).to.be.true;
+	});
+	it('Should format', function(){
+		expect(new Date(1400,5,3,2,54,5,123).format('L')==0).to.be.true;
+	});
+	it('Should format', function(){
+		expect(new Date(2004,5,3,2,54,5,123).format('L')==1).to.be.true;
+	});
+	it('Should format', function(){
+		expect(new Date(2001,0,1).format('o')==2000).to.be.true;
+	});
+	it('Should format', function(){
+		expect(new Date(2004,5,3,2,54,5,123).format('a A')=="am AM").to.be.true;
 	});
 	
 	it('Should not format', function(){

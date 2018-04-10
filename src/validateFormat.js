@@ -28,7 +28,7 @@
 				case "n":
 				case "g":
 					var m = dateStr.match(/^(\d){1,2}/)||[];
-					if(!m.length || +m[0]>12 || !+m[0] || m[0].length>1&&+m[0]<10) return false;
+					if(!m.length || +m[0]>12 || !+m[0]) return false;
 					dateStr = dateStr.substr(m[0].length);
 					break;
 				case "d":
@@ -37,12 +37,12 @@
 					break;
 				case "j":
 					var m = dateStr.match(/^(\d){1,2}/)||[];
-					if(!m.length || +m[0]>31 || !+m[0] || m[0].length>1&&+m[0]<10) return false;
+					if(!m.length || +m[0]>31 || !+m[0]) return false;
 					dateStr = dateStr.substr(m[0].length);
 					break;
 				case "G":
 					var m = dateStr.match(/^(\d){1,2}/)||[];
-					if(!m.length || +m[0]>23 || m[0].length>1&&+m[0]<10) return false;
+					if(!m.length || +m[0]>23) return false;
 					dateStr = dateStr.substr(m[0].length);
 					break;
 				case "H":

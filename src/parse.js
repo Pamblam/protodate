@@ -126,7 +126,6 @@
 					dateStr = dateStr.substr(3);
 					break;
 				case "S":
-					if(!~['st','nd','rd','th'].indexOf(dateStr.toLowerCase().substr(0,2))) return false;
 					dateStr = dateStr.substr(2);
 					break;
 				default: dateStr = dateStr.substr(1); break;
