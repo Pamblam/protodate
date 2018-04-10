@@ -1,27 +1,42 @@
-
-## protodate
+![Protodate Logo](https://i.imgur.com/rwU5zSL.png)
 
 [![npm version](https://badge.fury.io/js/protodate.svg)](https://badge.fury.io/js/protodate) [![build](https://api.travis-ci.org/Pamblam/protodate.svg?branch=master)](https://travis-ci.org/Pamblam/protodate) [![coverage](https://coveralls.io/repos/github/Pamblam/protodate/badge.svg?branch=master)](https://coveralls.io/github/Pamblam/protodate)
 
-An under-construction Date helper. Not built yet. Check back soon.
+Better Javascript Dates.
 
-**ToDos**
+## Contents
+ - [**Intro**](#overview)
+ - [**Usage**](#usage)
+ - [**Formatting Dates**](#formatting-dates)
+ - [**Parsing Dates**](#parsing-dates)
+ - [**Manipulating Dates**](#mainpulating-dates)
+ - [**Formatting Characters**](#formatting-characters)
+ - [**License**](#license)
+ - [**ToDos**](#todos)
 
- - ~~elapsed time~~
- - ~~formatting~~
- - ~~date type verification~~
- - ~~format string validation~~
- - ~~string parsing~~
- - ~~addition and subtraction~~
- - 100% code coverage
- - write docs in wiki
- - make header logo
- - finish writing the readme
- - make parser intelligent
- - do momentjs comparison
+## Intro
 
+@todo
 
-----
+## Usage
+
+@todo
+
+## Formatting Dates
+
+@todo
+
+## Parsing Dates
+
+@todo
+
+## Manipulating Dates
+
+@todo
+
+## Formatting Characters
+
+Each character represents part of a date format string. Characters listed as *Parsable* are understood by the `parse` method. All other characters, as well as characters escaped with a `\` in the format string will be printed as-is.
 
 | format character  | Description | Example returned values | Parsable |
 | ------------- | ------------- | -------------- | -------------- |
@@ -64,4 +79,23 @@ An under-construction Date helper. Not built yet. Check back soon.
 | *c* | ISO 8601 date | 1.1.1T1.1.1.990Z | ✕ |
 | *U* | Seconds since the Unix Epoch (January 1.1.1:00:00 GMT) | 1.1.1 | ✕ |
 
-Unrecognized characters as well as characters immediately preceded by a `\` in the format string will be printed as-is.
+
+## License
+
+Protodate comes with an Apache 2.0 license. [Read the license here](https://github.com/Pamblam/protodate/blob/master/LICENSE).
+
+## ToDos
+
+ - ~~elapsed time~~
+ - ~~formatting~~
+ - ~~date type verification~~
+ - ~~format string validation~~
+ - ~~string parsing~~
+ - ~~addition and subtraction~~
+ - 100% code coverage
+ - write docs in wiki
+ - ~~make header logo~~
+ - finish writing the readme
+ - make parser intelligent
+ - do momentjs comparison
+ - github.io site
