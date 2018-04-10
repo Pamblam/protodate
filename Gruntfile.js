@@ -30,6 +30,7 @@ module.exports = function(grunt) {
 					'src/format.js',
 					'src/validateFormat.js',
 					'src/parse.js',
+					'src/elapsedSince.js',
 					'src/export.js'
 				],
 				dest: 'protodate.js',

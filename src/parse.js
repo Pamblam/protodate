@@ -7,9 +7,14 @@
 	"use strict";
 	Date.parse = function(dateStr, formatStr){
 		if(!Date.validateFormat(dateStr, formatStr)) return false;
-		var year = new Date().getFullYear(), 
-			month = 0, day = 1, hours = 0, 
-			minutes = 0, seconds = 0, milliseconds = 0,
+		var now = new Date();
+		var year = now.getFullYear(), 
+			month = now.getMonth(), 
+			day = now.getDate(), 
+			hours = now.getHours(), 
+			minutes = now.getMinutes(), 
+			seconds = now.getSeconds(), 
+			milliseconds = now.getMilliseconds(),
 			am=true, hr24=false;
 		for(var i=0; i<formatStr.length; i++){
 			switch(formatStr[i]){

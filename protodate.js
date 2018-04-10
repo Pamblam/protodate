@@ -1,5 +1,5 @@
 /**
- * protodate - v1.0.28
+ * protodate - v1.0.33
  * Makes JS Dates Manageable
  * @author Rob Parham
  * @website https://github.com/Pamblam/protodate
@@ -11,7 +11,7 @@
 	"use strict";
 	Date.MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	Date.DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	Date.PROTODATE_VERSION = '1.0.28';
+	Date.PROTODATE_VERSION = '1.0.33';
 })();
 
 /**
@@ -260,9 +260,14 @@
 	"use strict";
 	Date.parse = function(dateStr, formatStr){
 		if(!Date.validateFormat(dateStr, formatStr)) return false;
-		var year = new Date().getFullYear(), 
-			month = 0, day = 1, hours = 0, 
-			minutes = 0, seconds = 0, milliseconds = 0,
+		var now = new Date();
+		var year = now.getFullYear(), 
+			month = now.getMonth(), 
+			day = now.getDate(), 
+			hours = now.getHours(), 
+			minutes = now.getMinutes(), 
+			seconds = now.getSeconds(), 
+			milliseconds = now.getMilliseconds(),
 			am=true, hr24=false;
 		for(var i=0; i<formatStr.length; i++){
 			switch(formatStr[i]){
@@ -386,6 +391,41 @@
 		}
 		if(!am && !hr24) hours+=12;
 		return new Date(year, month, day, hours, minutes, seconds, milliseconds);
+	};
+})();
+
+/**
+ * Get an object representing the amount of time elapsed since the given date
+ * @returns {undefined}
+ */
+(function(){
+	"use strict";
+	Date.prototype.elapsedSince = function (date) {
+		if(!Date.isDate(date)) return false;
+		var ms = Math.abs(this.getTime() - date.getTime()), o={};
+		o.y = Math.floor(ms / (3600000 * 24 * 365));
+		ms -= o.y * (3600000 * 24 * 365);
+		o.d = Math.floor(ms / (3600000 * 24));
+		ms -= o.d * (3600000 * 24);
+		o.h = Math.floor(ms / 3600000);
+		ms -= o.h * 3600000;
+		o.m = Math.floor(ms / 60000);
+		ms -= o.m * 60000;
+		o.s = Math.floor(ms / 1000);
+		ms -= o.s * 1000;
+		o.ms = ms;
+		o.verbose = function() {
+			var str = [];
+			if (o.y) str.push(o.y + " year" + (o.y > 1 ? "s" : ""));
+			if (o.d) str.push(o.d + " day" + (o.d > 1 ? "s" : ""));
+			if (o.h) str.push(o.h + " hour" + (o.h > 1 ? "s" : ""));
+			if (o.m) str.push(o.m + " minute" + (o.m > 1 ? "s" : ""));
+			if (o.s) str.push(o.s + " second" + (o.s > 1 ? "s" : ""));
+			if (str.length > 1) str[str.length - 1] = "and " + str[str.length - 1];
+			return str.join(', ');
+		};
+		o.clock = function(ms){ return [o.h, o.m, ms ? o.s+"."+(("00" + o.ms).substr(-3)):+o.s].join(':') };
+		return o;
 	};
 })();
 

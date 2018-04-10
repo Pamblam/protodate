@@ -196,3 +196,27 @@ describe('Formatter tests', function (){
 		expect(new Date('farts').format('jS')).to.be.false;
 	});
 });
+describe('Elapsed tests', function (){
+	var d1 = new Date(2007,5,11,13,54,5,123);
+	var d2 = new Date(2015,4,10,9,32,2,548);
+	var d3 = new Date(2016,5,11,10,33,3,549);
+	var d4 = new Date(2015,4,11,9,32,2,548);
+	it('Should calculate', function(){
+		expect(d1.elapsedSince(d2).clock(true)=="19:37:57.425").to.be.true;
+	});
+	it('Should calculate', function(){
+		expect(d2.elapsedSince(d3).verbose()=="1 year, 33 days, 1 hour, 1 minute, and 1 second").to.be.true;
+	});
+	it('Should calculate', function(){
+		expect(d2.elapsedSince(d4).verbose()=="1 day").to.be.true;
+	});
+	it('Should calculate', function(){
+		expect(d1.elapsedSince(d2).clock()=="19:37:57").to.be.true;
+	});
+	it('Should calculate', function(){
+		expect(d1.elapsedSince(d2).verbose()=="7 years, 334 days, 19 hours, 37 minutes, and 57 seconds").to.be.true;
+	});
+	it('Should not calculate', function(){
+		expect(d1.elapsedSince('farts')).to.be.false;
+	});
+});
