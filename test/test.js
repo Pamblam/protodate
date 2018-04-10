@@ -19,6 +19,23 @@ describe('Validator tests', function (){
 	it('Should validate', function(){
 		expect(Date.validateFormat("Wednes Jan 5th 2007 04:30:24 pm", "D M jS Y h:i:s")).to.be.true;
 	});
+	
+	it('Should not validate', function(){
+		expect(Date.validateFormat("1 12/5/99 4:30:24.090 pm", "D m/j/y g:i:s.v a")).to.be.false;
+	});
+	it('Should not validate', function(){
+		expect(Date.validateFormat("Friday s/5/2007 04:30:24.090 pm", "l m/j/Y H:i:s.v a")).to.be.false;
+	});
+	it('Should not validate', function(){
+		expect(Date.validateFormat("Wedn YEP 6/r/2007 4:30:24.090 pm", "D \\YEP n/d/Y G:i:s.v")).to.be.false;
+	});
+	it('Should not validate', function(){
+		expect(Date.validateFormat("Wedne January 05/5 4:30:24.090 pm", "D F d/Y G:i:s.v")).to.be.false;
+	});
+	it('Should not validate', function(){
+		expect(Date.validateFormat("Wednes Jan 5th 2007 y:30:24 pm", "D M jS Y h:i:s")).to.be.false;
+	});
+	
 });
 describe('Parser tests', function (){
 	it('Should parse', function(){
@@ -35,6 +52,49 @@ describe('Parser tests', function (){
 	});
 	it('Should parse', function(){
 		expect(Date.isDate(Date.parse("Wednes Jan 5th 2007 04:30:24 pm", "D M jS Y h:i:s"))).to.be.true;
+	});
+	
+	it('Should not parse', function(){
+		expect(Date.isDate(Date.parse("\\Y", "\\F"))).to.be.false;
+	});
+	it('Should not parse', function(){
+		expect(Date.isDate(Date.parse("F", "y"))).to.be.false;
+	});
+	it('Should not parse', function(){
+		expect(Date.isDate(Date.parse("F", "n"))).to.be.false;
+	});
+	it('Should not parse', function(){
+		expect(Date.isDate(Date.parse("j", "j"))).to.be.false;
+	});
+	it('Should not parse', function(){
+		expect(Date.isDate(Date.parse("j", "G"))).to.be.false;
+	});
+	it('Should not parse', function(){
+		expect(Date.isDate(Date.parse("j", "H"))).to.be.false;
+	});
+	it('Should not parse', function(){
+		expect(Date.isDate(Date.parse("j", "i"))).to.be.false;
+	});
+	it('Should not parse', function(){
+		expect(Date.isDate(Date.parse("j", "v"))).to.be.false;
+	});
+	it('Should not parse', function(){
+		expect(Date.isDate(Date.parse("j", "a"))).to.be.false;
+	});
+	it('Should not parse', function(){
+		expect(Date.isDate(Date.parse("j", "l"))).to.be.false;
+	});
+	it('Should not parse', function(){
+		expect(Date.isDate(Date.parse("j", "F"))).to.be.false;
+	});
+	it('Should not parse', function(){
+		expect(Date.isDate(Date.parse("j", "M"))).to.be.false;
+	});
+	it('Should not parse', function(){
+		expect(Date.isDate(Date.parse("j", "S"))).to.be.false;
+	});
+	it('Should not parse', function(){
+		expect(Date.isDate(Date.parse("1", "2"))).to.be.false;
 	});
 });
 describe('Formatter tests', function (){
@@ -70,6 +130,13 @@ describe('Formatter tests', function (){
 		expect(d.format("o")=="2007").to.be.true;
 	});
 	it('Should format', function(){
+		expect(d.format("A")=="PM").to.be.true;
+	});
+	it('Should format', function(){
+		expect(d.format("W z")=="24 162").to.be.true;
+	});
+	
+	it('Should format', function(){
 		expect(d.format("B")=="620").to.be.true;
 	});
 	it('Should format', function(){
@@ -79,9 +146,20 @@ describe('Formatter tests', function (){
 		expect(d.format("U")=="1181570045").to.be.true;
 	});
 	it('Should format', function(){
-		expect(d.format("A")=="PM").to.be.true;
+		expect(d.format("c")=="2007-06-11T13:54:05.123Z").to.be.true;
+	});
+	
+	it('Should format', function(){
+		expect(new Date(2007,5,1,13,54,5,123).format('jS')=="1st").to.be.true;
 	});
 	it('Should format', function(){
-		expect(d.format("W z")=="24 162").to.be.true;
+		expect(new Date(2007,5,2,13,54,5,123).format('jS')=="2nd").to.be.true;
+	});
+	it('Should format', function(){
+		expect(new Date(2007,5,3,13,54,5,123).format('jS')=="3rd").to.be.true;
+	});
+	
+	it('Should not format', function(){
+		expect(new Date('farts').format('jS')).to.be.false;
 	});
 });
