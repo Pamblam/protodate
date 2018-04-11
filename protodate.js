@@ -1,6 +1,6 @@
 /**
- * protodate - v1.1.1
- * Makes JS Dates Manageable
+ * protodate - v1.1.9
+ * Better Javascript Dates.
  * @author Rob Parham
  * @website https://github.com/Pamblam/protodate
  * @license Apache-2.0
@@ -11,13 +11,31 @@
 	"use strict";
 	Date.MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	Date.DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	Date.PROTODATE_VERSION = '1.1.1';
+	Date.PROTODATE_VERSION = '1.1.9';
 	Date.MILLISECOND = 1;
 	Date.SECOND = 1000;
 	Date.MINUTE = 60000;
 	Date.HOUR = 3600000;
 	Date.DAY = 86400000;
 	Date.YEAR = 31536000000;
+	Date.TIME_FORMATS = [
+		"G00 \\h\\o\\u\\r\\s", "g \\o\\c\\l\\o\\c\\k", "g \\o \\c\\l\\o\\c\\k", 
+		"g i", "g i a", "g i A", "g i s", "g i s a", "g i s A", "h i", "h i a", 
+		"h i A", "h i s", "h i s a", "h i s A", "H i", "H i a", "H i A", "H i s", 
+		"G i", "G i a", "G i A", "G i s", "g i s v", "g i s a v", "g i s A v", 
+		"h i s v", "h i s a v", "h i s A v", "H i s v", "G i s v"
+	];
+	Date.DATE_FORMATS = [
+		"y", "Y", "F", "M", "F Y", "F y", "M Y", "M y", "F jS Y", "F jS", 
+		"M jS Y", "M jS", "F j Y", "F j", "M j Y", "M j", "jS F Y", "jS F", 
+		"jS M Y", "jS M", "j F Y", "j F", "j M Y", "j M", "Y m d", "m d y", 
+		"m d Y", "Y n d", "n d y", "n d Y", "Y m j", "m j y", "m j Y", "Y n j", 
+		"n j y", "n j Y", "D Y m d", "D m d y", "D m d Y", "D Y n d", "D n d y", 
+		"D n d Y", "D Y m j", "D m j y", "D m j Y", "D Y n j", "D n j y", 
+		"D n j Y", "l Y m d", "l m d y", "l m d Y", "l Y n d", "l n d y", 
+		"l n d Y", "l Y m j", "l m j y", "l m j Y", "l Y n j", "l n j y", 
+		"l n j Y"
+	];
 })();
 
 /**
@@ -254,7 +272,7 @@
 					break;
 			}
 		}
-		return true;
+		return !dateStr.trim().length;
 	};
 })();
 
@@ -265,6 +283,11 @@
 (function(){
 	"use strict";
 	Date.parse = function(dateStr, formatStr){
+		if(!formatStr){
+			dateStr = dateStr.replace(/\W+/g, " ").trim();
+			formatStr = Date.guessFormat(dateStr);
+			if(!formatStr) return false;
+		}
 		if(!Date.validateFormat(dateStr, formatStr)) return false;
 		var now = new Date();
 		var year = now.getFullYear(), 
@@ -456,6 +479,27 @@
 	Date.prototype.plus = function(quantity, period){
 		this.setTime(this.getTime() + (quantity * period));
 		return this;
+	};
+})();
+
+(function(){
+	"use strict";
+	Date.guessFormat = function(dateStr){
+		var tf, df, i, n;
+		for(i=0; i<Date.TIME_FORMATS.length; i++){
+			tf = Date.TIME_FORMATS[i];
+			if(Date.validateFormat(dateStr, tf)) return tf;
+		}
+		for(i=0; i<Date.TIME_FORMATS.length; i++){
+			tf = Date.TIME_FORMATS[i];
+			if(Date.validateFormat(dateStr, tf)) return tf;
+			for(n=0; n<Date.DATE_FORMATS.length; n++){
+				df = Date.DATE_FORMATS[n];
+				if(Date.validateFormat(dateStr, df)) return df;
+				if(Date.validateFormat(dateStr, df+" "+tf)) return df+" "+tf;
+				if(Date.validateFormat(dateStr, tf+" "+df)) return tf+" "+df;
+			}
+		}
 	};
 })();
 

@@ -126,6 +126,6 @@
 					break;
 			}
 		}
-		return true;
+		return !dateStr.trim().length;
 	};
 })();

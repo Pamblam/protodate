@@ -11,13 +11,13 @@ describe('Validator tests', function (){
 		expect(Date.validateFormat("Friday 12/5/2007 04:30:24.090 pm", "l m/j/Y H:i:s.v a")).to.be.true;
 	});
 	it('Should validate', function(){
-		expect(Date.validateFormat("Wedn YEP 6/05/2007 4:30:24.090 pm", "D \\YEP n/d/Y G:i:s.v")).to.be.true;
+		expect(Date.validateFormat("Wedn YEP 6/05/2007 4:30:24.090 pm", "D \\YEP n/d/Y G:i:s.v a")).to.be.true;
 	});
 	it('Should validate', function(){
-		expect(Date.validateFormat("Wedne January 05/2007 4:30:24.090 pm", "D F d/Y G:i:s.v")).to.be.true;
+		expect(Date.validateFormat("Wedne January 05/2007 4:30:24.090 pm", "D F d/Y G:i:s.v a")).to.be.true;
 	});
 	it('Should validate', function(){
-		expect(Date.validateFormat("Wednes Jan 5th 2007 04:30:24 pm", "D M jS Y h:i:s")).to.be.true;
+		expect(Date.validateFormat("Wednes Jan 5th 2007 04:30:24 pm", "D M jS Y h:i:s a")).to.be.true;
 	});
 	
 	it('Should not validate', function(){
@@ -45,13 +45,13 @@ describe('Parser tests', function (){
 		expect(Date.isDate(Date.parse("Friday 12/5/2007 04:30:24.090 pm", "l m/j/Y H:i:s.v a"))).to.be.true;
 	});
 	it('Should parse', function(){
-		expect(Date.isDate(Date.parse("Wedn YEP 6/05/2007 4:30:24.090 pm", "D \\YEP n/d/Y G:i:s.v"))).to.be.true;
+		expect(Date.isDate(Date.parse("Wedn YEP 6/05/2007 4:30:24.090 pm", "D \\YEP n/d/Y G:i:s.v a"))).to.be.true;
 	});
 	it('Should parse', function(){
-		expect(Date.isDate(Date.parse("Wedne January 05/2007 4:30:24.090 pm", "D F d/Y G:i:s.v"))).to.be.true;
+		expect(Date.isDate(Date.parse("Wedne January 05/2007 4:30:24.090 pm", "D F d/Y G:i:s.v a"))).to.be.true;
 	});
 	it('Should parse', function(){
-		expect(Date.isDate(Date.parse("Wednes Jan 5th 2007 04:30:24 pm", "D M jS Y h:i:s"))).to.be.true;
+		expect(Date.isDate(Date.parse("Wednes Jan 5th 2007 04:30:24 pm", "D M jS Y h:i:s a"))).to.be.true;
 	});
 	it('Should parse', function(){
 		expect(Date.isDate(Date.parse("01", "y"))).to.be.true;
@@ -228,5 +228,21 @@ describe('Add and Substract tests', function (){
 	});
 	it('Should substract', function(){
 		expect(d.minus(3, Date.DAY).format("m/d/y g:i a") == "06/11/07 1:54 pm").to.be.true;
+	});
+});
+
+describe('Format Guessing', function (){
+	var d = new Date(2007,5,11,13,54,5,123);
+	it('Should guess', function(){
+		expect(Date.parse("January 2007").format("m/y") == "01/07").to.be.true;
+	});
+	it('Should guess', function(){
+		expect(Date.parse("3 o'clock").format("g") == "3").to.be.true;
+	});
+	it('Should guess', function(){
+		expect(Date.parse("February 21st 1987 3:32 pm").format("m/d/y H:i") == "02/21/87 15:32").to.be.true;
+	});
+	it('Should guess', function(){
+		expect(Date.parse("22:11:13.321 February 21st 1987").format("m/d/y g:i:s.v a") == "02/21/87 10:11:13.321 pm").to.be.true;
 	});
 });

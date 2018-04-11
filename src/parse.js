@@ -6,6 +6,11 @@
 (function(){
 	"use strict";
 	Date.parse = function(dateStr, formatStr){
+		if(!formatStr){
+			dateStr = dateStr.replace(/\W+/g, " ").trim();
+			formatStr = Date.guessFormat(dateStr);
+			if(!formatStr) return false;
+		}
 		if(!Date.validateFormat(dateStr, formatStr)) return false;
 		var now = new Date();
 		var year = now.getFullYear(), 
