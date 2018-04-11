@@ -1,5 +1,5 @@
 /**
- * protodate - v1.1.15
+ * protodate - v1.1.17
  * Better Javascript Dates.
  * @author Rob Parham
  * @website https://github.com/Pamblam/protodate
@@ -11,7 +11,7 @@
 	"use strict";
 	Date.MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	Date.DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	Date.PROTODATE_VERSION = '1.1.15';
+	Date.PROTODATE_VERSION = '1.1.17';
 	Date.MILLISECOND = 1;
 	Date.SECOND = 1000;
 	Date.MINUTE = 60000;
@@ -40,7 +40,7 @@
 
 /**
  * Determine if a thing is a date
- * @returns {undefined}
+ * @returns {bool}
  */
 (function(){
 	"use strict";
@@ -425,7 +425,7 @@
 
 /**
  * Get an object representing the amount of time elapsed since the given date
- * @returns {undefined}
+ * @returns {object}
  */
 (function(){
 	"use strict";
@@ -460,7 +460,7 @@
 
 /**
  * Add a period of time
- * @returns Date obj
+ * @returns {Date}
  */
 (function(){
 	"use strict";
@@ -472,7 +472,7 @@
 
 /**
  * Add a period of time
- * @returns Date obj
+ * @returns {Date}
  */
 (function(){
 	"use strict";
@@ -482,6 +482,10 @@
 	};
 })();
 
+/**
+ * Guess the format string belonging to a date string
+ * @returns {string|false}
+ */
 (function(){
 	"use strict";
 	Date.guessFormat = function(dateStr){

@@ -1,3 +1,4 @@
+
 ![Protodate Logo](https://i.imgur.com/rwU5zSL.png)
 
 [![npm version](https://badge.fury.io/js/protodate.svg)](https://badge.fury.io/js/protodate) [![build](https://api.travis-ci.org/Pamblam/protodate.svg?branch=master)](https://travis-ci.org/Pamblam/protodate) [![coverage](https://coveralls.io/repos/github/Pamblam/protodate/badge.svg?branch=master)](https://coveralls.io/github/Pamblam/protodate)
@@ -12,27 +13,58 @@ Better Javascript Dates.
  - [**Manipulating Dates**](#mainpulating-dates)
  - [**Formatting Characters**](#formatting-characters)
  - [**License**](#license)
- - [**ToDos**](#todos)
 
 ## Intro
 
-@todo
+Protodate is a very fast and lightweight solution for building, parsing, manipulating and formatting Javascript Dates. Protodate extends the native JS Date object for ease of use and to keep the library light. By leveraging native, low-level code Protodate is able to achieve unprecedented speeds. 
+
+Compare Protodate to Moment.js:
+
+| Protodate | Moment.js |
+| --- | --- |
+| Parses Dates more than **2x faster** | Slower |
+| Calculates elapsed time nearly **20x faster** | Much slower |
+| Minified @ 9.5kb (**5x Lighter**) | Minified @ 50.43kb |
+| [**100% code coverage**](https://coveralls.io/github/Pamblam/protodate) | [only 94.6% code coverage](https://coveralls.io/github/moment/moment) |
+
+[Check out the benchmarks](https://jsperf.com/protodate-v-moment-js/1).
+
+Also, if you happened to be a PHP developer, you're in luck because Protodate uses the same [date formatting](#formatting-characters) as PHP's native `date` function.
+
 
 ## Usage
 
-@todo
+#### Browsers:
+
+Download and include the [protodate.js](https://github.com/Pamblam/protodate/blob/master/protodate.js) file or the minified, production-ready [protodate.min.js](https://github.com/Pamblam/protodate/blob/master/protodate.min.js) and include it in your markup.
+
+    <script src='protodate.min.js'></script>
+    
+#### Node
+
+Install it with `npm install protodate` and require it in your script.
+
+    const Date = require('protodate.js');
 
 ## Formatting Dates
 
-@todo
+Use the [`format(formatStr)`](https://github.com/Pamblam/protodate/wiki#new-dateformatformatstr) method to format dates as strings. Use the [Formatting Characters Table](#formatting-characters) to build your format string.
+
+**Example**: `new Date().format("m/d/y g:i a")`
 
 ## Parsing Dates
 
-@todo
+Use the [`parse(dateStr[, formatStr])`](https://github.com/Pamblam/protodate/wiki#dateparsedatestr-formatstr) method to create a Date object from a string. If you provide a format string to the method, parsing will be much faster, but protodate is smart enough to guess just about any format without it. Use any of the parsable formatting characters to create a [format string](#formatting-characters).
+
+**Example**: `Date.parse("January 3rd 2007 @ 4 o'clock")`
 
 ## Manipulating Dates
 
-@todo
+Use the [`plus(quantity, period)`](https://github.com/Pamblam/protodate/wiki#new-dateplusquantity-period) and [`minus(quantity, period)`](https://github.com/Pamblam/protodate/wiki#new-dateminusquantity-period) methods to add and subtract time from a Date instance.
+
+The `period` parameter is the unit of time to add or subtract, and the quantity parameter is how many of them to add or subtract. Specify the period parameter with using one of the 6 [Date Period Constants](https://github.com/Pamblam/protodate/wiki#constants), (ie, [`Date.MILLISECOND`](https://github.com/Pamblam/protodate/wiki#datemillisecond), [`Date.SECOND`](https://github.com/Pamblam/protodate/wiki#datesecond), [`Date.MINUTE`](https://github.com/Pamblam/protodate/wiki#dateminute), [`Date.HOUR`](https://github.com/Pamblam/protodate/wiki#datehour), [`Date.DAY`](https://github.com/Pamblam/protodate/wiki#dateday), [`Date.YEAR`](https://github.com/Pamblam/protodate/wiki#dateyear)).
+
+**Example**: `new Date().add(3, Date.DAY) // 3 days from now`
 
 ## Formatting Characters
 
@@ -74,28 +106,12 @@ Each character represents part of a date format string. Characters listed as *Pa
 | *s* | Seconds, with leading zeros | 00 through 59 | ✔ |
 | *v* | Milliseconds with leading zeros - 3 Digits. | Example: 654 | ✔ |
 | **Timezone** | **--** | **--** | **--** |
-| *Z* | Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive. | -1.1.15 through 1.1.15 | ✕ |
+| *Z* | Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive. | -1.1.17 through 1.1.17 | ✕ |
 | **Full Date/Time** | **--** | **--** | **--** |
-| *c* | ISO 8601 date | 1.1.15T1.1.15.990Z | ✕ |
-| *U* | Seconds since the Unix Epoch (January 1.1.15:00:00 GMT) | 1.1.15 | ✕ |
+| *c* | ISO 8601 date | 1.1.17T1.1.17.990Z | ✕ |
+| *U* | Seconds since the Unix Epoch (January 1.1.17:00:00 GMT) | 1.1.17 | ✕ |
 
 
 ## License
 
 Protodate comes with an Apache 2.0 license. [Read the license here](https://github.com/Pamblam/protodate/blob/master/LICENSE).
-
-## ToDos
-
- - ~~elapsed time~~
- - ~~formatting~~
- - ~~date type verification~~
- - ~~format string validation~~
- - ~~string parsing~~
- - ~~addition and subtraction~~
- - 100% code coverage
- - write docs in wiki
- - ~~make header logo~~
- - finish writing the readme
- - make parser intelligent
- - do momentjs comparison
- - github.io site

@@ -1,4 +1,8 @@
 
+/**
+ * Guess the format string belonging to a date string
+ * @returns {string|false}
+ */
 (function(){
 	"use strict";
 	Date.guessFormat = function(dateStr){

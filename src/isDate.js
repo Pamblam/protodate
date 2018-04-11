@@ -1,7 +1,7 @@
 
 /**
  * Determine if a thing is a date
- * @returns {undefined}
+ * @returns {bool}
  */
 (function(){
 	"use strict";

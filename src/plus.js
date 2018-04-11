@@ -1,7 +1,7 @@
 
 /**
  * Add a period of time
- * @returns Date obj
+ * @returns {Date}
  */
 (function(){
 	"use strict";

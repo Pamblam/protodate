@@ -1,7 +1,7 @@
 
 /**
  * Get an object representing the amount of time elapsed since the given date
- * @returns {undefined}
+ * @returns {object}
  */
 (function(){
 	"use strict";
