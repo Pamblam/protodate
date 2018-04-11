@@ -54,6 +54,9 @@ describe('Parser tests', function (){
 		expect(Date.isDate(Date.parse("Wednes Jan 5th 2007 04:30:24 pm", "D M jS Y h:i:s a"))).to.be.true;
 	});
 	it('Should parse', function(){
+		expect(Date.isDate(Date.parse("Wednes Jan 5th 2007 04:30:24 am", "D M jS Y h:i:s a"))).to.be.true;
+	});
+	it('Should parse', function(){
 		expect(Date.isDate(Date.parse("01", "y"))).to.be.true;
 	});
 	it('Should parse', function(){
@@ -62,7 +65,9 @@ describe('Parser tests', function (){
 	it('Should parse', function(){
 		expect(Date.isDate(Date.parse("12", "h"))).to.be.true;
 	});
-	
+	it('Should parse', function(){
+		expect(Date.isDate(Date.parse('Nov', 'M'))).to.be.true;
+	});
 	it('Should not parse', function(){
 		expect(Date.isDate(Date.parse("12", "S"))).to.be.false;
 	});
@@ -201,6 +206,7 @@ describe('Elapsed tests', function (){
 	var d2 = new Date(2015,4,10,9,32,2,548);
 	var d3 = new Date(2016,5,11,10,33,3,549);
 	var d4 = new Date(2015,4,11,9,32,2,548);
+	var d5 = new Date(2015,4,10,8,32,2,548);
 	it('Should calculate', function(){
 		expect(d1.elapsedSince(d2).clock(true)=="19:37:57.425").to.be.true;
 	});
@@ -209,6 +215,9 @@ describe('Elapsed tests', function (){
 	});
 	it('Should calculate', function(){
 		expect(d2.elapsedSince(d4).verbose()=="1 day").to.be.true;
+	});
+	it('Should calculate', function(){
+		expect(d2.elapsedSince(d5).verbose()=="1 hour").to.be.true;
 	});
 	it('Should calculate', function(){
 		expect(d1.elapsedSince(d2).clock()=="19:37:57").to.be.true;
@@ -244,5 +253,8 @@ describe('Format Guessing', function (){
 	});
 	it('Should guess', function(){
 		expect(Date.parse("22:11:13.321 February 21st 1987").format("m/d/y g:i:s.v a") == "02/21/87 10:11:13.321 pm").to.be.true;
+	});
+	it('Should not guess', function(){
+		expect(Date.parse(".")).to.be.false;
 	});
 });

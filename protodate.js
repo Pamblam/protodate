@@ -1,5 +1,5 @@
 /**
- * protodate - v1.1.9
+ * protodate - v1.1.15
  * Better Javascript Dates.
  * @author Rob Parham
  * @website https://github.com/Pamblam/protodate
@@ -11,7 +11,7 @@
 	"use strict";
 	Date.MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	Date.DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	Date.PROTODATE_VERSION = '1.1.9';
+	Date.PROTODATE_VERSION = '1.1.15';
 	Date.MILLISECOND = 1;
 	Date.SECOND = 1000;
 	Date.MINUTE = 60000;
@@ -486,16 +486,15 @@
 	"use strict";
 	Date.guessFormat = function(dateStr){
 		var tf, df, i, n;
-		for(i=0; i<Date.TIME_FORMATS.length; i++){
-			tf = Date.TIME_FORMATS[i];
-			if(Date.validateFormat(dateStr, tf)) return tf;
+		for(n=0; n<Date.DATE_FORMATS.length; n++){
+			df = Date.DATE_FORMATS[n];
+			if(Date.validateFormat(dateStr, df)) return df;
 		}
 		for(i=0; i<Date.TIME_FORMATS.length; i++){
 			tf = Date.TIME_FORMATS[i];
 			if(Date.validateFormat(dateStr, tf)) return tf;
 			for(n=0; n<Date.DATE_FORMATS.length; n++){
 				df = Date.DATE_FORMATS[n];
-				if(Date.validateFormat(dateStr, df)) return df;
 				if(Date.validateFormat(dateStr, df+" "+tf)) return df+" "+tf;
 				if(Date.validateFormat(dateStr, tf+" "+df)) return tf+" "+df;
 			}
@@ -503,4 +502,5 @@
 	};
 })();
 
+/* istanbul ignore next */
 if(!!(typeof module !== 'undefined' && module.exports)) module.exports = Date;
