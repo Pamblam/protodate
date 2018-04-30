@@ -1,5 +1,5 @@
 /**
- * protodate - v1.1.17
+ * protodate (lite) - v2.0.3
  * Better Javascript Dates.
  * @author Rob Parham
  * @website https://github.com/Pamblam/protodate
@@ -11,7 +11,7 @@
 	"use strict";
 	Date.MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	Date.DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	Date.PROTODATE_VERSION = '1.1.17';
+	Date.PROTODATE_VERSION = '2.0.3';
 	Date.MILLISECOND = 1;
 	Date.SECOND = 1000;
 	Date.MINUTE = 60000;
@@ -36,6 +36,16 @@
 		"l n d Y", "l Y m j", "l m j y", "l m j Y", "l Y n j", "l n j y", 
 		"l n j Y"
 	];
+})();
+
+/**
+ * Return a unix timestamp for the given date
+ * @returns {undefined}
+ */
+(function(){
+	Date.prototype.getUnixTimestamp = function(){
+		return ~~(this.getTime()/1000);
+	};
 })();
 
 /**

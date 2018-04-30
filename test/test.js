@@ -1,6 +1,6 @@
 
 var expect = require('chai').expect;
-const Date = require('../protodate.js');
+const Date = require('../protodate.tz.js');
 process.env.TZ = 'iso3166.tab';
 
 describe('Validator tests', function (){
@@ -154,16 +154,16 @@ describe('Formatter tests', function (){
 	});
 	
 	it('Should format', function(){
-		expect(d.format("B")=="620").to.be.true;
+		expect(d.format("B")=="620"||d.format("B")=="829").to.be.true;
 	});
 	it('Should format', function(){
-		expect(d.format("Z")=="0").to.be.true;
+		expect(d.format("Z")=="0"||d.format("Z")=="18000").to.be.true;
 	});
 	it('Should format', function(){
-		expect(d.format("U")=="1181570045").to.be.true;
+		expect(d.format("U")=="1181570045"||d.format("U")=="1181588045").to.be.true;
 	});
 	it('Should format', function(){
-		expect(d.format("c")=="2007-06-11T13:54:05.123Z").to.be.true;
+		expect(d.format("c")=="2007-06-11T13:54:05.123Z"||d.format("c")=="2007-06-11T18:54:05.123Z").to.be.true;
 	});
 	
 	it('Should format', function(){
@@ -256,5 +256,48 @@ describe('Format Guessing', function (){
 	});
 	it('Should not guess', function(){
 		expect(Date.parse(".")).to.be.false;
+	});
+});
+
+describe('TS Methods', function (){
+	var d = new Date(2007,5,11,13,54,5,123);
+	it('Show timestamp', function(){
+		expect(d.getUnixTimestamp()=="1181588045").to.be.true;
+	});
+	it('Show timezone', function(){
+		expect(new Date().getTimezone()=="America/New_York").to.be.true;
+	});
+	it('Check for DST in Timezone', function(){
+		expect(Date.isDSTObserved('America/New_York')).to.be.true;
+	});
+	it('Check for DST in Date', function(){
+		expect(new Date().isDST()).to.be.true;
+	});
+	d.setTimezone('Australia/Sydney');
+	it('Get time in Sydney, Australia', function(){
+		expect(d.toString()=='Mon Jun 11 2007 04:54:05 GMT+1000 (AEST)').to.be.true;
+	});
+	it('Get date in Sydney, Australia', function(){
+		expect(d.toDateString()=='Mon Jun 11 2007').to.be.true;
+	});
+	it('Get timezone Sydney, Australia', function(){
+		expect(d.getTimezone()=='Australia/Sydney').to.be.true;
+	});
+	it('Should not find timezone', function(){
+		var err = false;
+		try{
+			new Date().setTimezone('Poop');
+		}catch(e){
+			err = true;
+		}
+		expect(err).to.be.true;
+	});
+	var nome = new Date('2007,5,11,13,54,5,123');
+	nome.setTimezone('America/Nome');
+	it('Should format nome date', function(){
+		console.log(1, nome.format("m/d/y g:i:s.v a"));
+	});
+	it('Should get nome TZ offset', function(){
+		console.log(2, nome.getTimezoneOffset());
 	});
 });

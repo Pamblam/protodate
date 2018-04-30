@@ -106,10 +106,10 @@ Each character represents part of a date format string. Characters listed as *Pa
 | *s* | Seconds, with leading zeros | 00 through 59 | ✔ |
 | *v* | Milliseconds with leading zeros - 3 Digits. | Example: 654 | ✔ |
 | **Timezone** | **--** | **--** | **--** |
-| *Z* | Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive. | -1.1.17 through 1.1.17 | ✕ |
+| *Z* | Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive. | -2.0.3 through 2.0.3 | ✕ |
 | **Full Date/Time** | **--** | **--** | **--** |
-| *c* | ISO 8601 date | 1.1.17T1.1.17.990Z | ✕ |
-| *U* | Seconds since the Unix Epoch (January 1.1.17:00:00 GMT) | 1.1.17 | ✕ |
+| *c* | ISO 8601 date | 2.0.3T2.0.3.990Z | ✕ |
+| *U* | Seconds since the Unix Epoch (January 2.0.3:00:00 GMT) | 2.0.3 | ✕ |
 
 
 ## License

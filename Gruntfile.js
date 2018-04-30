@@ -12,37 +12,62 @@ module.exports = function(grunt) {
 	console.log("  Building protodate Version "+pkg.version);
 	console.log("---------------------------------------");
 	
+	var src_files = [
+		'src/constants.js',
+		'src/getUnixTimestamp.js',
+		'src/isDate.js',
+		'src/format.js',
+		'src/validateFormat.js',
+		'src/parse.js',
+		'src/elapsedSince.js',
+		'src/minus.js',
+		'src/plus.js',
+		'src/guessFormat.js',
+		'src/export.js'
+	];
+	
+	var ts_src_files = [
+		'src/timezones/data/tzdata.js',
+		'src/timezones/getTZInfo.js',
+		'src/timezones/setTimezone.js',
+		'src/timezones/getTimezone.js',
+		'src/timezones/isDST.js',
+		'src/timezones/isDSTObserved.js'
+	];
+	
 	grunt.initConfig({
 		pkg: pkg,
 		concat: {
-			options: {
-				banner: '/**\n * <%= pkg.name %> - v<%= pkg.version %>' +
-						'\n * <%= pkg.description %>' +
-						'\n * @author <%= pkg.author %>' +
-						'\n * @website <%= pkg.homepage %>' +
-						'\n * @license <%= pkg.license %>' +
-						'\n */\n\n'
-			},
-			dist: {
-				src: [
-					'src/constants.js',
-					'src/isDate.js',
-					'src/format.js',
-					'src/validateFormat.js',
-					'src/parse.js',
-					'src/elapsedSince.js',
-					'src/minus.js',
-					'src/plus.js',
-					'src/guessFormat.js',
-					'src/export.js'
-				],
+			lite: {
+				options: {
+					banner: '/**\n * <%= pkg.name %> (lite) - v<%= pkg.version %>' +
+							'\n * <%= pkg.description %>' +
+							'\n * @author <%= pkg.author %>' +
+							'\n * @website <%= pkg.homepage %>' +
+							'\n * @license <%= pkg.license %>' +
+							'\n */\n\n'
+				},
+				src: [...src_files],
 				dest: 'protodate.js',
 			},
+			tz: {
+				options: {
+					banner: '/**\n * <%= pkg.name %> (timezones+) - v<%= pkg.version %>' +
+							'\n * <%= pkg.description %>' +
+							'\n * @author <%= pkg.author %>' +
+							'\n * @website <%= pkg.homepage %>' +
+							'\n * @license <%= pkg.license %>' +
+							'\n */\n\n'
+				},
+				src: [...src_files,...ts_src_files],
+				dest: 'protodate.tz.js',
+			}
 		},
 		'string-replace': {
 			source: {
 				files: {
-					"protodate.js": "protodate.js"
+					"protodate.js": "protodate.js",
+					"protodate.tz.js": "protodate.tz.js"
 				},
 				options: {
 					replacements: [{
@@ -64,12 +89,19 @@ module.exports = function(grunt) {
 			}
 		},
 		uglify: {
-			options: {
-				banner: '/*! <%= pkg.name %> - v<%= pkg.version %> */'
-			},
-			build: {
+			lite: {
+				options: {
+					banner: '/*! <%= pkg.name %> (lite) - v<%= pkg.version %> */'
+				},
 				src: 'protodate.js',
 				dest: 'protodate.min.js'
+			},
+			tz: {
+				options: {
+					banner: '/*! <%= pkg.name %> (+timezones) - v<%= pkg.version %> */'
+				},
+				src: 'protodate.tz.js',
+				dest: 'protodate.tz.min.js'
 			}
 		}
 	});
@@ -79,9 +111,11 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	
 	grunt.registerTask('default', [
-		'concat',
+		'concat:lite',
+		'concat:tz',
 		'string-replace',
-		'uglify'
+		'uglify:lite',
+		'uglify:tz'
 	]);
 	
 };
