@@ -272,7 +272,15 @@ describe('TS Methods', function (){
 		expect(Date.isDSTObserved('America/New_York')).to.be.true;
 	});
 	it('Check for DST in Date', function(){
-		expect(new Date().isDST()==true||new Date().isDST()==false).to.be.true;
+		var passed = false;
+		var tz;
+		try{
+			tz = new Date().getTimezone()
+			passed = new Date().isDST();
+		}catch(e){
+			passed = tz === 'UTC'
+		}
+		expect(passed).to.be.true;
 	});
 
 	var s = new Date(2007,5,11,13,54,5,123);
