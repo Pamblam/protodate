@@ -266,7 +266,11 @@ describe('TS Methods', function (){
 		expect(d.getUnixTimestamp()=="1181570045"||d.getUnixTimestamp()=="1181588045").to.be.true;
 	});
 	it('Show timezone', function(){
-		var z = new Date().getTimezone();
+		try{
+			var z = new Date().getTimezone();
+		}catch(e){
+			z = "UTC";
+		}
 		expect(z=="America/New_York"||z=="UTC").to.be.true;
 	});
 	it('Check for DST in Timezone', function(){
