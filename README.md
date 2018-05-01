@@ -30,7 +30,7 @@ Compare Protodate to Moment.js:
 | Calculates elapsed time nearly **20x faster** | Much slower |
 | Base lib minified @ 9.6kb (**1/5<sup>th</sup> the size**) | Minified @ 50.43kb |
 | [**100% code coverage**](https://coveralls.io/github/Pamblam/protodate) | [only 94.6% code coverage](https://coveralls.io/github/moment/moment) |
-| Timezone support from 1835-2500 (**665yr Range**) | Timezone support from 2012-2022 (**10yr Range**) |
+| Timezone support from 2.0.12 (**665yr Range**) | Timezone support from 2.0.12 (**10yr Range**) |
 
 [Check out the benchmarks](https://jsperf.com/protodate-v-moment-js/1).
 
@@ -133,10 +133,10 @@ Each character represents part of a date format string. Characters listed as *Pa
 | *s* | Seconds, with leading zeros | 00 through 59 | ✔ |
 | *v* | Milliseconds with leading zeros - 3 Digits. | Example: 654 | ✔ |
 | **Timezone** | **--** | **--** | **--** |
-| *Z* | Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive. | -2.0.11 through 2.0.11 | ✕ |
+| *Z* | Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive. | -2.0.12 through 2.0.12 | ✕ |
 | **Full Date/Time** | **--** | **--** | **--** |
-| *c* | ISO 8601 date | 2.0.11T2.0.11.990Z | ✕ |
-| *U* | Seconds since the Unix Epoch (January 2.0.11:00:00 GMT) | 2.0.11 | ✕ |
+| *c* | ISO 8601 date | 2.0.12T2.0.12.990Z | ✕ |
+| *U* | Seconds since the Unix Epoch (January 2.0.12:00:00 GMT) | 2.0.12 | ✕ |
 
 
 ## Timezone Reference

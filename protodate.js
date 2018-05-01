@@ -1,5 +1,5 @@
 /**
- * protodate (lite) - v2.0.11
+ * protodate (lite) - v2.0.12
  * Better Javascript Dates.
  * @author Rob Parham
  * @website https://github.com/Pamblam/protodate
@@ -11,7 +11,7 @@
 	"use strict";
 	Date.MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	Date.DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	Date.PROTODATE_VERSION = '2.0.11';
+	Date.PROTODATE_VERSION = '2.0.12';
 	Date.MILLISECOND = 1;
 	Date.SECOND = 1000;
 	Date.MINUTE = 60000;
