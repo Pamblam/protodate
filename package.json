@@ -1,8 +1,8 @@
 {
   "name": "protodate",
-  "version": "1.1.17",
+  "version": "2.0.11",
   "description": "Better Javascript Dates.",
-  "main": "date.js",
+  "main": "protodate.tz.min.js",
   "scripts": {
     "test": "node node_modules/.bin/mocha",
     "coverage": "node node_modules/.bin/istanbul cover _mocha -- -R spec",
@@ -12,7 +12,8 @@
     "date",
     "time",
     "moment",
-    "protodate"
+    "protodate",
+    "timezone"
   ],
   "repository": {
     "type": "git",
