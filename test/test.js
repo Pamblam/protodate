@@ -278,7 +278,7 @@ describe('TS Methods', function (){
 			tz = new Date().getTimezone()
 			passed = new Date().isDST();
 		}catch(e){
-			passed = tz === 'UTC'
+			passed = tz === 'UTC';
 		}
 		expect(passed).to.be.true;
 	});
