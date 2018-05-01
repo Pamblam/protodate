@@ -5,9 +5,11 @@
  */
 (function(){
 	Date.isDSTObserved = function(timezone){
-		var DSTObserved = false;
-		for(var i=Date.TZData.length; i--;){
-			if(Date.TZData[i][3] == 0 || timezone !== Date.TZData[i][4]) continue;
+		if(undefined === Date.TZData[timezone]) throw new Error("No such timezone: "+timezone);
+		var data = Date.TZData[timezone];
+		var l = data.length;
+		for(var i=l; i--;){
+			if(data[i][3] == 0) continue;
 			DSTObserved = true;
 			break;
 		}

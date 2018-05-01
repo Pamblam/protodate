@@ -1,5 +1,5 @@
 /**
- * protodate (timezones 2012-2022) - v2.0.6
+ * protodate (timezones 2012-2022) - v2.0.11
  * Better Javascript Dates.
  * @author Rob Parham
  * @website https://github.com/Pamblam/protodate
@@ -11,7 +11,7 @@
 	"use strict";
 	Date.MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	Date.DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	Date.PROTODATE_VERSION = '2.0.6';
+	Date.PROTODATE_VERSION = '2.0.11';
 	Date.MILLISECOND = 1;
 	Date.SECOND = 1000;
 	Date.MINUTE = 60000;
@@ -5084,12 +5084,13 @@
 (function(){
 	Date.getTZInfo = function(unix_timestamp, timezone){
 		var row;
-		if(undefined === Date.TZData[timezone]) throw new Error("No such timezone: "+tz);
-		var l = Date.TZData[timezone].length-1;
-		var row = Date.TZData[timezone][l];
+		if(undefined === Date.TZData[timezone]) throw new Error("No such timezone: "+timezone);
+		var data = Date.TZData[timezone];
+		var l = data.length;
+		var row;
 		for(var i=l; i--;){
-			if(Date.TZData[timezone][i][1] > unix_timestamp) continue;
-			row = Date.TZData[i];
+			if(data[i][1] > unix_timestamp) continue;
+			row = data[i];
 			break;
 		}
 		return {abbr:row[0], time_start:row[1], gmt_offset:row[2], dst:row[3]};
@@ -5153,9 +5154,11 @@
  */
 (function(){
 	Date.isDSTObserved = function(timezone){
-		var DSTObserved = false;
-		for(var i=Date.TZData.length; i--;){
-			if(Date.TZData[i][3] == 0 || timezone !== Date.TZData[i][4]) continue;
+		if(undefined === Date.TZData[timezone]) throw new Error("No such timezone: "+timezone);
+		var data = Date.TZData[timezone];
+		var l = data.length;
+		for(var i=l; i--;){
+			if(data[i][3] == 0) continue;
 			DSTObserved = true;
 			break;
 		}

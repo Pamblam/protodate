@@ -1,6 +1,6 @@
 
 var expect = require('chai').expect;
-const Date = require('../protodate.tz.js');
+const Date = require('../protodate.tz.full.js');
 process.env.TZ = 'iso3166.tab';
 
 describe('Validator tests', function (){
@@ -262,7 +262,8 @@ describe('Format Guessing', function (){
 describe('TS Methods', function (){
 	var d = new Date(2007,5,11,13,54,5,123);
 	it('Show timestamp', function(){
-		expect(d.getUnixTimestamp()=="1181588045").to.be.true;
+		// multiple correct possibilities depending on environment
+		expect(d.getUnixTimestamp()=="1181570045"||d.getUnixTimestamp()=="1181588045").to.be.true;
 	});
 	it('Show timezone', function(){
 		expect(new Date().getTimezone()=="America/New_York").to.be.true;
@@ -273,15 +274,19 @@ describe('TS Methods', function (){
 	it('Check for DST in Date', function(){
 		expect(new Date().isDST()).to.be.true;
 	});
-	d.setTimezone('Australia/Sydney');
+
+	var s = new Date(2007,5,11,13,54,5,123);
+	s.setTimezone('Australia/Sydney');
+
 	it('Get time in Sydney, Australia', function(){
-		expect(d.toString()=='Mon Jun 11 2007 04:54:05 GMT+1000 (AEST)').to.be.true;
+		// multiple correct possibilities depending on environment
+		expect(s.toString()=='Mon Jun 11 2007 23:54:05 GMT+1000 (AEST)'||s.toString()=="Mon Jun 12 2007 04:54:05 GMT+1000 (AEST)").to.be.true;
 	});
 	it('Get date in Sydney, Australia', function(){
-		expect(d.toDateString()=='Mon Jun 11 2007').to.be.true;
+		expect(s.toDateString()=='Mon Jun 11 2007'||s.toDateString()=='Mon Jun 12 2007').to.be.true;
 	});
 	it('Get timezone Sydney, Australia', function(){
-		expect(d.getTimezone()=='Australia/Sydney').to.be.true;
+		expect(s.getTimezone()=='Australia/Sydney').to.be.true;
 	});
 	it('Should not find timezone', function(){
 		var err = false;
@@ -292,12 +297,34 @@ describe('TS Methods', function (){
 		}
 		expect(err).to.be.true;
 	});
-	var nome = new Date('2007,5,11,13,54,5,123');
+	it('Should not find timezone', function(){
+		var err = false;
+		try{
+			Date.isDSTObserved('Poop');
+		}catch(e){
+			err = true;
+		}
+		expect(err).to.be.true;
+	});
+	
+	var nome = new Date(2007,5,11,13,54,5,123);
 	nome.setTimezone('America/Nome');
 	it('Should format nome date', function(){
-		console.log(1, nome.format("m/d/y g:i:s.v a"));
+		// multiple correct possibilities depending on environment
+		expect(nome.format("m/d/y g:i:s.v a")=='06/11/07 5:54:05.123 am'||nome.format("m/d/y g:i:s.v a")=='06/11/07 10:54:05.123 am').to.be.true;
+	});
+	it('Should format nome date', function(){
+		expect(nome.getMilliseconds()=='0').to.be.true;
 	});
 	it('Should get nome TZ offset', function(){
-		console.log(2, nome.getTimezoneOffset());
+		expect(nome.getTimezoneOffset()==-480).to.be.true;
 	});
+	
+	var tahiti = new Date(2007,5,11,13,54,5,123);
+	tahiti.setTimezone('Pacific/Tahiti');
+	it('Should format tahiti date', function(){
+		// multiple correct possibilities depending on environment
+		expect(tahiti.toString()=='Mon Jun 11 2007 08:54:05 GMT-1000 (-10)'||tahiti.toString()=='Mon Jun 11 2007 03:54:05 GMT-1000 (-10)').to.be.true;
+	});
+
 });
