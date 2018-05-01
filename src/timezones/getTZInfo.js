@@ -6,12 +6,14 @@
 (function(){
 	Date.getTZInfo = function(unix_timestamp, timezone){
 		var row;
-		for(var i=Date.TZData.length; i--;){
-			if(Date.TZData[i][1] > unix_timestamp || timezone !== Date.TZData[i][4]) continue;
+		if(undefined === Date.TZData[timezone]) throw new Error("No such timezone: "+tz);
+		var l = Date.TZData[timezone].length-1;
+		var row = Date.TZData[timezone][l];
+		for(var i=l; i--;){
+			if(Date.TZData[timezone][i][1] > unix_timestamp) continue;
 			row = Date.TZData[i];
 			break;
 		}
-		if(undefined === row) throw new Error("No such timezone: "+tz);
 		return {abbr:row[0], time_start:row[1], gmt_offset:row[2], dst:row[3]};
 	};
 })();
