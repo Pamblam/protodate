@@ -266,7 +266,8 @@ describe('TS Methods', function (){
 		expect(d.getUnixTimestamp()=="1181570045"||d.getUnixTimestamp()=="1181588045").to.be.true;
 	});
 	it('Show timezone', function(){
-		expect(new Date().getTimezone()=="America/New_York"||new Date().getTimezone()=="UTC").to.be.true;
+		var z = new Date().getTimezone();
+		expect(z=="America/New_York"||z=="UTC").to.be.true;
 	});
 	it('Check for DST in Timezone', function(){
 		expect(Date.isDSTObserved('America/New_York')).to.be.true;
