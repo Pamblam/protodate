@@ -123,7 +123,8 @@ describe('Formatter tests', function (){
 		expect(d.format("l m/j/Y H:i:s.v a")=="Monday 06/11/2007 13:54:05.123 pm").to.be.true;
 	});
 	it('Should format', function(){
-		expect(d.format("D \\YEP n/d/Y G:i:s.v")=="Mon YEP 6/11/2007 13:54:05.123").to.be.true;
+		console.log(d.format("D \\YEP n/d/Y G:i:s.v"));
+		expect(d.format("D \\Y\\E\\P n/d/Y G:i:s.v")=="Mon YEP 6/11/2007 13:54:05.123").to.be.true;
 	});
 	it('Should format', function(){
 		expect(d.format("D F d/Y G:i:s.v")=="Mon June 11/2007 13:54:05.123").to.be.true;
@@ -152,7 +153,6 @@ describe('Formatter tests', function (){
 	it('Should format', function(){
 		expect(d.format("W z")=="24 162").to.be.true;
 	});
-	
 	it('Should format', function(){
 		expect(d.format("B")=="620"||d.format("B")=="829").to.be.true;
 	});
@@ -165,6 +165,18 @@ describe('Formatter tests', function (){
 	it('Should format', function(){
 		expect(d.format("c")=="2007-06-11T13:54:05.123Z"||d.format("c")=="2007-06-11T18:54:05.123Z").to.be.true;
 	});
+	it('Should format', function(){
+		expect(d.format("J")=="2454262.5").to.be.true;
+	});
+	it('Should format', function(){
+		expect(d.format("P")=="Waning Crescent").to.be.true;
+	});
+	
+	var dte = new Date(2012, 0, 1, 0, 0, 0);
+	while(dte.format("Y") < 2013){
+		dte.format("P");
+		dte.plus(1, Date.MINUTE);
+	}
 	
 	it('Should format', function(){
 		expect(new Date(2007,5,1,13,54,5,123).format('jS')=="1st").to.be.true;
@@ -196,7 +208,6 @@ describe('Formatter tests', function (){
 	it('Should format', function(){
 		expect(new Date(2004,5,3,2,54,5,123).format('a A')=="am AM").to.be.true;
 	});
-	
 	it('Should not format', function(){
 		expect(new Date('farts').format('jS')).to.be.false;
 	});

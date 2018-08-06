@@ -2,7 +2,7 @@
 
 ![Protodate Logo](https://i.imgur.com/rwU5zSL.png)
 
-[![npm version](https://badge.fury.io/js/protodate.svg)](https://badge.fury.io/js/protodate) [![build](https://api.travis-ci.org/Pamblam/protodate.svg?branch=master)](https://travis-ci.org/Pamblam/protodate) [![coverage](https://coveralls.io/repos/github/Pamblam/protodate/badge.svg?branch=master)](https://coveralls.io/github/Pamblam/protodate)
+[![npm version](https://badge.fury.io/js/protodate.svg)](https://badge.fury.io/js/protodate) [![build](https://api.travis-ci.org/Pamblam/protodate.svg?branch=master)](https://travis-ci.org/Pamblam/protodate) [![coverage](https://coveralls.io/repos/github/Pamblam/protodate/badge.svg?branch=master)](https://coveralls.io/github/Pamblam/protodate) v2.0.15
 
 Better Javascript Dates.
 
@@ -30,7 +30,7 @@ Compare Protodate to Moment.js:
 | Calculates elapsed time nearly **20x faster** | Much slower |
 | Base lib minified @ 9.6kb (**1/5<sup>th</sup> the size**) | Minified @ 50.43kb |
 | [**100% code coverage**](https://coveralls.io/github/Pamblam/protodate) | [only 94.6% code coverage](https://coveralls.io/github/moment/moment) |
-| Timezone support from 2.0.12 (**665yr Range**) | Timezone support from 2.0.12 (**10yr Range**) |
+| Timezone support from 1835-2500 (**665yr Range**) | Timezone support from 2012-2022 (**10yr Range**) |
 
 [Check out the benchmarks](https://jsperf.com/protodate-v-moment-js/1).
 
@@ -49,7 +49,7 @@ Protodate has 6 different versions so you only have to download what you need.
 
 Here's a helpful flow chart to help you choose which file best fits your needs:
 
-![Protodate file chooser flowchart](https://i.imgur.com/JwlYSlX.png)
+![Protodate file chooser flowchart](https://i.imgur.com/ApMOPng.png)
 
 ## Usage
 
@@ -133,10 +133,13 @@ Each character represents part of a date format string. Characters listed as *Pa
 | *s* | Seconds, with leading zeros | 00 through 59 | ✔ |
 | *v* | Milliseconds with leading zeros - 3 Digits. | Example: 654 | ✔ |
 | **Timezone** | **--** | **--** | **--** |
-| *Z* | Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive. | -2.0.12 through 2.0.12 | ✕ |
+| *Z* | Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive. | -43200 through 50400 | ✕ |
 | **Full Date/Time** | **--** | **--** | **--** |
-| *c* | ISO 8601 date | 2.0.12T2.0.12.990Z | ✕ |
-| *U* | Seconds since the Unix Epoch (January 2.0.12:00:00 GMT) | 2.0.12 | ✕ |
+| *c* | ISO 8601 date | 2004-02-12T15:19:21.990Z | ✕ |
+| *U* | Seconds since the Unix Epoch (January 1 1970 00:00:00 GMT) | 1533566318 | ✕ |
+| **Other** | **--** | **--** | **--** |
+| *J* | Count of days since since noon Universal Time on January 1, 4713 BC on the Julian calendar | 123412.5 | ✕ |
+| *P* | Moon Phase | Waning Crescent | ✕ |
 
 
 ## Timezone Reference

@@ -1,5 +1,5 @@
 /**
- * protodate (lite) - v2.0.12
+ * protodate (lite) - v2.0.15
  * Better Javascript Dates.
  * @author Rob Parham
  * @website https://github.com/Pamblam/protodate
@@ -11,7 +11,7 @@
 	"use strict";
 	Date.MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	Date.DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	Date.PROTODATE_VERSION = '2.0.12';
+	Date.PROTODATE_VERSION = '2.0.15';
 	Date.MILLISECOND = 1;
 	Date.SECOND = 1000;
 	Date.MINUTE = 60000;
@@ -147,7 +147,41 @@
 					}
 					buffer.push(dayNo);
 					break;
-
+				
+				// Julian Day
+				case "J":
+					var y = parseInt(this.format("Y"));
+					var m = parseInt(this.format("n"));
+					if(m === 1 || m === 2){
+						y -= 1;
+						m += 12;
+					}
+					var d = parseInt(this.format("j"));
+					var a = Math.floor(y/100);
+					var b = Math.floor(a/4);
+					var c = 2-a+b;
+					var e = Math.floor(365.25*(y+4716));
+					var f = Math.floor(30.6001*(m+1));
+					buffer.push(c+d+e+f-1524.5);
+					break;
+					
+				// Moon Phase
+				case "P":
+					var jd = this.format("J");
+					var dsn = jd - 2451549.5;
+					var nm = dsn / 29.53;
+					var dic = parseFloat("0."+((nm+"").split(".")[1])) * 29.53;
+					if(dic > 27.65625) return "New Moon";
+					if(dic > 23.96875) return "Waning Crescent";
+					if(dic > 20.28125) return "Third Quarter";
+					if(dic > 16.59375) return "Waning Gibbous";
+					if(dic > 12.90625) return "Full Moon";
+					if(dic > 9.21875) return "Waxing Gibbous";
+					if(dic > 5.53125) return "First Quarter";
+					if(dic > 1.84375) return "Waxing Crescent";
+					return "New Moon";
+					break;
+				
 				default: buffer.push(format[i]); break;
 			}
 		}
