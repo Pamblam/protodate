@@ -1,8 +1,8 @@
 
 
-![Protodate Logo](https://i.imgur.com/rwU5zSL.png)
+![Protodate Logo](https://i.imgur.com/pvkUCeA.png)
 
-[![npm version](https://badge.fury.io/js/protodate.svg)](https://badge.fury.io/js/protodate) [![build](https://api.travis-ci.org/Pamblam/protodate.svg?branch=master)](https://travis-ci.org/Pamblam/protodate) [![coverage](https://coveralls.io/repos/github/Pamblam/protodate/badge.svg?branch=master)](https://coveralls.io/github/Pamblam/protodate) v3.0.5
+[![npm version](https://badge.fury.io/js/protodate.svg)](https://badge.fury.io/js/protodate) [![build](https://api.travis-ci.org/Pamblam/protodate.svg?branch=master)](https://travis-ci.org/Pamblam/protodate) [![coverage](https://coveralls.io/repos/github/Pamblam/protodate/badge.svg?branch=master)](https://coveralls.io/github/Pamblam/protodate) v2.0.15
 
 Better Javascript Dates.
 
@@ -14,17 +14,18 @@ Better Javascript Dates.
  - [**Parsing Dates**](#parsing-dates)
  - [**Manipulating Dates**](#mainpulating-dates)
  - [**Converting Timezones**](#converting-timezones)
+ - [**Type Conversion**](#type-conversion)
  - [**Formatting Characters**](#formatting-characters)
  - [**Timezone Reference**](#timezone-reference)
  - [**License**](#license)
 
 ## Intro
 
-Protodate is a very fast and lightweight solution for building, parsing, manipulating and formatting Javascript Dates. Protodate extends the native JS Date object for ease of use and to keep the library light. By leveraging native, low-level code Protodate is able to achieve unprecedented speeds. 
+ProtoDate is a very fast and lightweight solution for building, parsing, manipulating and formatting Javascript Dates. ProtoDate extends the native JS Date object (without modifying the original prototype) for ease of use and to keep the library light. By leveraging native, low-level code ProtoDate is able to achieve unprecedented speeds. 
 
-Compare Protodate to Moment.js:
+Compare ProtoDate to Moment.js:
 
-| Protodate | Moment.js |
+| ProtoDate | Moment.js |
 | --- | --- |
 | Parses Dates more than **2x faster** | Slower |
 | Calculates elapsed time nearly **20x faster** | Much slower |
@@ -34,11 +35,11 @@ Compare Protodate to Moment.js:
 
 [Check out the benchmarks](https://jsperf.com/protodate-v-moment-js/1).
 
-Also, if you happened to be a PHP developer, you're in luck because Protodate uses the same [date formatting](#formatting-characters) as PHP's native `date` function.
+Also, if you happened to be a PHP developer, you're in luck because ProtoDate uses the same [date formatting](#formatting-characters) as PHP's native `date` function.
 
 ## Choose Your File
 
-Protodate has 6 different versions so you only have to download what you need. 
+ProtoDate has 6 different versions so you only have to download what you need. 
 
  - [protodate.min.js](https://github.com/Pamblam/protodate/blob/master/protodate.min.js)
  - [protodate.js](https://github.com/Pamblam/protodate/blob/master/protodate.js)
@@ -63,27 +64,27 @@ Download and include the js file that [best fits your needs](#choose-your-file) 
 
 Install the library with `npm install protodate` and `require` the file that [best fits your needs](#choose-your-file) in your script.
 
-    const Date = require('protodate.js');
+    const ProtoDate = require('protodate.js');
 
 ## Formatting Dates
 
 Use the [`format(formatStr)`](https://github.com/Pamblam/protodate/wiki#new-dateformatformatstr) method to format dates as strings. Use the [Formatting Characters Table](#formatting-characters) to build your format string.
 
-**Example**: `new Date().format("m/d/y g:i a")`
+**Example**: `new ProtoDate().format("m/d/y g:i a")`
 
 ## Parsing Dates
 
-Use the [`parse(dateStr[, formatStr])`](https://github.com/Pamblam/protodate/wiki#dateparsedatestr-formatstr) method to create a Date object from a string. If you provide a format string to the method, parsing will be much faster, but protodate is smart enough to guess just about any format without it. Use any of the parsable formatting characters to create a [format string](#formatting-characters).
+Use the [`parse(dateStr[, formatStr])`](https://github.com/Pamblam/protodate/wiki#dateparsedatestr-formatstr) method to create a ProtoDate object from a string. If you provide a format string to the method, parsing will be much faster, but ProtoDate is smart enough to guess just about any format without it. Use any of the parsable formatting characters to create a [format string](#formatting-characters).
 
-**Example**: `Date.parse("January 3rd 2007 @ 4 o'clock")`
+**Example**: `Protodate.parse("January 3rd 2007 @ 4 o'clock")`
 
 ## Manipulating Dates
 
 Use the [`plus(quantity, period)`](https://github.com/Pamblam/protodate/wiki#new-dateplusquantity-period) and [`minus(quantity, period)`](https://github.com/Pamblam/protodate/wiki#new-dateminusquantity-period) methods to add and subtract time from a Date instance.
 
-The `period` parameter is the unit of time to add or subtract, and the quantity parameter is how many of them to add or subtract. Specify the period parameter with using one of the 6 [Date Period Constants](https://github.com/Pamblam/protodate/wiki#constants), (ie, [`Date.MILLISECOND`](https://github.com/Pamblam/protodate/wiki#datemillisecond), [`Date.SECOND`](https://github.com/Pamblam/protodate/wiki#datesecond), [`Date.MINUTE`](https://github.com/Pamblam/protodate/wiki#dateminute), [`Date.HOUR`](https://github.com/Pamblam/protodate/wiki#datehour), [`Date.DAY`](https://github.com/Pamblam/protodate/wiki#dateday), [`Date.YEAR`](https://github.com/Pamblam/protodate/wiki#dateyear)).
+The `period` parameter is the unit of time to add or subtract, and the quantity parameter is how many of them to add or subtract. Specify the period parameter with using one of the 6 [Date Period Constants](https://github.com/Pamblam/protodate/wiki#constants), (ie, [`ProtoDate.MILLISECOND`](https://github.com/Pamblam/protodate/wiki#datemillisecond), [`ProtoDate.SECOND`](https://github.com/Pamblam/protodate/wiki#datesecond), [`ProtoDate.MINUTE`](https://github.com/Pamblam/protodate/wiki#dateminute), [`ProtoDate.HOUR`](https://github.com/Pamblam/protodate/wiki#datehour), [`ProtoDate.DAY`](https://github.com/Pamblam/protodate/wiki#dateday), [`ProtoDate.YEAR`](https://github.com/Pamblam/protodate/wiki#dateyear)).
 
-**Example**: `new Date().add(3, Date.DAY) // 3 days from now`
+**Example**: `new ProtoDate().add(3, Date.DAY) // 3 days from now`
 
 ## Converting Timezones
 
@@ -91,7 +92,19 @@ The `period` parameter is the unit of time to add or subtract, and the quantity 
 
 You can convert dates to other timezones with the [`setTimezone(timezone)`](https://github.com/Pamblam/protodate/wiki#new-datesettimezonetimezone) method. 
 
-**Example**: `new Date().setTimezone('Asia/Hong_Kong').toString() // Current time in Hong Kong`
+**Example**: `new ProtoDate().setTimezone('Asia/Hong_Kong').toString() // Current time in Hong Kong`
+
+## Type Conversion
+
+Generally, you should never need to convert a ProtoDate object to a native Date object since ProtoDate extends Date - it has all the same methods, but these functions are provided as a convenience.
+
+### Converting ProtoDate to native Date
+
+**Example**: `const date = protodate.toDate();`
+
+### Converting Date to ProtoDate
+
+**Example**: `const protodate = ProtoDate.fromDate(date);`
 
 ## Formatting Characters
 
@@ -575,4 +588,5 @@ A list of timezones and their corresponding countries:
 
 ## License
 
-Protodate comes with an Apache 2.0 license. [Read the license here](https://github.com/Pamblam/protodate/blob/master/LICENSE).
+ProtoDate comes with an Apache 2.0 license. [Read the license here](https://github.com/Pamblam/protodate/blob/master/LICENSE).
+
