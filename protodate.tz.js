@@ -1,5 +1,5 @@
 /**
- * protodate (timezones 2012-2022) - v3.0.6
+ * protodate (timezones 2012-2022) - v3.0.8
  * Better Javascript Dates.
  * @author Rob Parham
  * @website https://github.com/Pamblam/protodate
@@ -13,7 +13,7 @@ class ProtoDate extends Date{}
 	"use strict";
 	ProtoDate.MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	ProtoDate.DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	ProtoDate.PROTODATE_VERSION = '3.0.6';
+	ProtoDate.PROTODATE_VERSION = '3.0.8';
 	ProtoDate.MILLISECOND = 1;
 	ProtoDate.SECOND = 1000;
 	ProtoDate.MINUTE = 60000;
