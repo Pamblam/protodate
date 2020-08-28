@@ -84,7 +84,7 @@ Use the [`plus(quantity, period)`](https://github.com/Pamblam/protodate/wiki#new
 
 The `period` parameter is the unit of time to add or subtract, and the quantity parameter is how many of them to add or subtract. Specify the period parameter with using one of the 6 [Date Period Constants](https://github.com/Pamblam/protodate/wiki#constants), (ie, [`ProtoDate.MILLISECOND`](https://github.com/Pamblam/protodate/wiki#datemillisecond), [`ProtoDate.SECOND`](https://github.com/Pamblam/protodate/wiki#datesecond), [`ProtoDate.MINUTE`](https://github.com/Pamblam/protodate/wiki#dateminute), [`ProtoDate.HOUR`](https://github.com/Pamblam/protodate/wiki#datehour), [`ProtoDate.DAY`](https://github.com/Pamblam/protodate/wiki#dateday), [`ProtoDate.YEAR`](https://github.com/Pamblam/protodate/wiki#dateyear)).
 
-**Example**: `new ProtoDate().add(3, Date.DAY) // 3 days from now`
+**Example**: `new ProtoDate().add(3, ProtoDate.DAY) // 3 days from now`
 
 ## Converting Timezones
 
