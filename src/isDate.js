@@ -5,7 +5,7 @@
  */
 (function(){
 	"use strict";
-	Date.isDate = function(date){
+	ProtoDate.isDate = function(date){
 		return 'function' === typeof date.getTime && !isNaN(date.getTime());
 	};
 })();

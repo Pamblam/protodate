@@ -27,8 +27,8 @@ echo " " >> $jsfileall
 echo " " >> $jsfileltd
 echo "(function(){" >> $jsfileall
 echo "(function(){" >> $jsfileltd
-echo "	Date.TZData = {" >> $jsfileall
-echo "	Date.TZData = {" >> $jsfileltd
+echo "	ProtoDate.TZData = {" >> $jsfileall
+echo "	ProtoDate.TZData = {" >> $jsfileltd
 echo "		// \"zone_name\": [[\"abbreviation\", \"time_start\", \"gmt_offset\", \"dst\"],...]" >> $jsfileall
 echo "		// \"zone_name\": [[\"abbreviation\", \"time_start\", \"gmt_offset\", \"dst\"],...]" >> $jsfileltd
 

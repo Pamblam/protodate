@@ -5,7 +5,7 @@
  */
 (function(){
 	"use strict";
-	Date.validateFormat = function(dateStr, formatStr){
+	ProtoDate.validateFormat = function(dateStr, formatStr){
 		for(var i=0; i<formatStr.length; i++){
 			switch(formatStr[i]){
 				case "\\": 
@@ -66,9 +66,9 @@
 					break;
 				case "l":
 					var d = dateStr.toLowerCase(), day=false;
-					for(var n=0; n<Date.DAYS.length; n++){
-						if(!d.indexOf(Date.DAYS[n].toLowerCase())){
-							day = Date.DAYS[n];
+					for(var n=0; n<ProtoDate.DAYS.length; n++){
+						if(!d.indexOf(ProtoDate.DAYS[n].toLowerCase())){
+							day = ProtoDate.DAYS[n];
 							break;
 						}
 					}
@@ -77,17 +77,17 @@
 					break;
 				case "D":
 					var d = dateStr.toLowerCase(), abrlen = 0;
-					for(var n=0; n<Date.DAYS.length; n++){
-						if(Date.DAYS[n].length>6 && !d.indexOf(Date.DAYS[n].toLowerCase().substr(0,6))){
+					for(var n=0; n<ProtoDate.DAYS.length; n++){
+						if(ProtoDate.DAYS[n].length>6 && !d.indexOf(ProtoDate.DAYS[n].toLowerCase().substr(0,6))){
 							abrlen = 6; break;
 						}
-						if(!d.indexOf(Date.DAYS[n].toLowerCase().substr(0,5))){
+						if(!d.indexOf(ProtoDate.DAYS[n].toLowerCase().substr(0,5))){
 							abrlen = 5; break;
 						}
-						if(!d.indexOf(Date.DAYS[n].toLowerCase().substr(0,4))){
+						if(!d.indexOf(ProtoDate.DAYS[n].toLowerCase().substr(0,4))){
 							abrlen = 4; break;
 						}
-						if(!d.indexOf(Date.DAYS[n].toLowerCase().substr(0,3))){
+						if(!d.indexOf(ProtoDate.DAYS[n].toLowerCase().substr(0,3))){
 							abrlen = 3; break;
 						}
 					}
@@ -96,9 +96,9 @@
 					break;
 				case "F":
 					var m = dateStr.toLowerCase(), mm=false;
-					for(var n=0; n<Date.MONTHS.length; n++){
-						if(!m.indexOf(Date.MONTHS[n].toLowerCase())){
-							mm = Date.MONTHS[n];
+					for(var n=0; n<ProtoDate.MONTHS.length; n++){
+						if(!m.indexOf(ProtoDate.MONTHS[n].toLowerCase())){
+							mm = ProtoDate.MONTHS[n];
 							break;
 						}
 					}
@@ -107,9 +107,9 @@
 					break;
 				case "M":
 					var m = dateStr.toLowerCase(), mm=false;
-					for(var n=0; n<Date.MONTHS.length; n++){
-						if(!m.indexOf(Date.MONTHS[n].toLowerCase().substr(0,3))){
-							mm = Date.MONTHS[n];
+					for(var n=0; n<ProtoDate.MONTHS.length; n++){
+						if(!m.indexOf(ProtoDate.MONTHS[n].toLowerCase().substr(0,3))){
+							mm = ProtoDate.MONTHS[n];
 							break;
 						}
 					}

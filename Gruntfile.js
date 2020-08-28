@@ -22,7 +22,9 @@ module.exports = function(grunt) {
 		'src/elapsedSince.js',
 		'src/minus.js',
 		'src/plus.js',
-		'src/guessFormat.js'
+		'src/guessFormat.js',
+		'src/toDate.js',
+		'src/fromDate.js'
 	];
 	
 	var ts_src_files = [
@@ -126,7 +128,7 @@ module.exports = function(grunt) {
 	
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-string-replace');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-uglify-es');
 	
 	grunt.registerTask('default', [
 		'concat:lite',

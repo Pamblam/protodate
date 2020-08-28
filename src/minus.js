@@ -5,7 +5,7 @@
  */
 (function(){
 	"use strict";
-	Date.prototype.minus = function(quantity, period){
+	ProtoDate.prototype.minus = function(quantity, period){
 		this.setTime(this.getTime() - (quantity * period));
 		return this;
 	};

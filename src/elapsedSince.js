@@ -5,19 +5,19 @@
  */
 (function(){
 	"use strict";
-	Date.prototype.elapsedSince = function (date) {
-		if(!Date.isDate(date)) return false;
+	ProtoDate.prototype.elapsedSince = function (date) {
+		if(!ProtoDate.isDate(date)) return false;
 		var ms = Math.abs(this.getTime() - date.getTime()), o={};
-		o.y = Math.floor(ms / Date.YEAR);
-		ms -= o.y * Date.YEAR;
-		o.d = Math.floor(ms / Date.DAY);
-		ms -= o.d * Date.DAY;
-		o.h = Math.floor(ms / Date.HOUR);
-		ms -= o.h * Date.HOUR;
-		o.m = Math.floor(ms / Date.MINUTE);
-		ms -= o.m * Date.MINUTE;
-		o.s = Math.floor(ms / Date.SECOND);
-		ms -= o.s * Date.SECOND;
+		o.y = Math.floor(ms / ProtoDate.YEAR);
+		ms -= o.y * ProtoDate.YEAR;
+		o.d = Math.floor(ms / ProtoDate.DAY);
+		ms -= o.d * ProtoDate.DAY;
+		o.h = Math.floor(ms / ProtoDate.HOUR);
+		ms -= o.h * ProtoDate.HOUR;
+		o.m = Math.floor(ms / ProtoDate.MINUTE);
+		ms -= o.m * ProtoDate.MINUTE;
+		o.s = Math.floor(ms / ProtoDate.SECOND);
+		ms -= o.s * ProtoDate.SECOND;
 		o.ms = ms;
 		o.verbose = function() {
 			var str = [];

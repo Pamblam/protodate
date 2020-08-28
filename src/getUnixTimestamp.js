@@ -4,7 +4,7 @@
  * @returns {undefined}
  */
 (function(){
-	Date.prototype.getUnixTimestamp = function(){
+	ProtoDate.prototype.getUnixTimestamp = function(){
 		return ~~(this.getTime()/1000);
 	};
 })();

@@ -1,5 +1,5 @@
 /**
- * protodate (lite) - v2.0.15
+ * protodate (lite) - v3.0.5
  * Better Javascript Dates.
  * @author Rob Parham
  * @website https://github.com/Pamblam/protodate
@@ -7,25 +7,27 @@
  */
 
 
+class ProtoDate extends Date{}
+
 (function(){
 	"use strict";
-	Date.MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-	Date.DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	Date.PROTODATE_VERSION = '2.0.15';
-	Date.MILLISECOND = 1;
-	Date.SECOND = 1000;
-	Date.MINUTE = 60000;
-	Date.HOUR = 3600000;
-	Date.DAY = 86400000;
-	Date.YEAR = 31536000000;
-	Date.TIME_FORMATS = [
+	ProtoDate.MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+	ProtoDate.DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+	ProtoDate.PROTODATE_VERSION = '3.0.5';
+	ProtoDate.MILLISECOND = 1;
+	ProtoDate.SECOND = 1000;
+	ProtoDate.MINUTE = 60000;
+	ProtoDate.HOUR = 3600000;
+	ProtoDate.DAY = 86400000;
+	ProtoDate.YEAR = 31536000000;
+	ProtoDate.TIME_FORMATS = [
 		"G00 \\h\\o\\u\\r\\s", "g \\o\\c\\l\\o\\c\\k", "g \\o \\c\\l\\o\\c\\k", 
 		"g i", "g i a", "g i A", "g i s", "g i s a", "g i s A", "h i", "h i a", 
 		"h i A", "h i s", "h i s a", "h i s A", "H i", "H i a", "H i A", "H i s", 
 		"G i", "G i a", "G i A", "G i s", "g i s v", "g i s a v", "g i s A v", 
 		"h i s v", "h i s a v", "h i s A v", "H i s v", "G i s v"
 	];
-	Date.DATE_FORMATS = [
+	ProtoDate.DATE_FORMATS = [
 		"y", "Y", "F", "M", "F Y", "F y", "M Y", "M y", "F jS Y", "F jS", 
 		"M jS Y", "M jS", "F j Y", "F j", "M j Y", "M j", "jS F Y", "jS F", 
 		"jS M Y", "jS M", "j F Y", "j F", "j M Y", "j M", "Y m d", "m d y", 
@@ -43,7 +45,7 @@
  * @returns {undefined}
  */
 (function(){
-	Date.prototype.getUnixTimestamp = function(){
+	ProtoDate.prototype.getUnixTimestamp = function(){
 		return ~~(this.getTime()/1000);
 	};
 })();
@@ -54,7 +56,7 @@
  */
 (function(){
 	"use strict";
-	Date.isDate = function(date){
+	ProtoDate.isDate = function(date){
 		return 'function' === typeof date.getTime && !isNaN(date.getTime());
 	};
 })();
@@ -67,8 +69,8 @@
  */
 (function(){
 	"use strict";
-	Date.prototype.format = function(format) {
-		if (!Date.isDate(this)) return false;
+	ProtoDate.prototype.format = function(format) {
+		if (!ProtoDate.isDate(this)) return false;
 		var buffer = []; 
 		for(var i=0; i<format.length; i++){
 			switch(format[i]){
@@ -80,7 +82,7 @@
 				case "y": buffer.push(("" + this.getFullYear()).substring(2)); break;
 				case "m": buffer.push(("0" + (this.getMonth() + 1)).substr(-2, 2)); break;
 				case "n": buffer.push("" + (this.getMonth() + 1)); break;
-				case "t": buffer.push("" + new Date(this.getFullYear(), this.getMonth() + 1, 0).getDate()); break; 
+				case "t": buffer.push("" + new ProtoDate(this.getFullYear(), this.getMonth() + 1, 0).getDate()); break; 
 				case "d": buffer.push(("0" + this.getDate()).substr(-2, 2)); break;
 				case "j": buffer.push(this.getDate() + ""); break;
 				case "w": buffer.push(this.getDay()); break;
@@ -101,10 +103,10 @@
 				// Symbols that represent text
 				case "a": buffer.push(this.getHours() > 11 ? "pm" : "am"); break;
 				case "A": buffer.push(this.getHours() > 11 ? "PM" : "AM"); break;
-				case "l": buffer.push(Date.DAYS[this.getDay()]); break;
-				case "D": buffer.push(Date.DAYS[this.getDay()].substr(0, 3)); break;
-				case "F": buffer.push(Date.MONTHS[this.getMonth()]); break;
-				case "M": buffer.push(Date.MONTHS[this.getMonth()].substring(0, 3)); break;
+				case "l": buffer.push(ProtoDate.DAYS[this.getDay()]); break;
+				case "D": buffer.push(ProtoDate.DAYS[this.getDay()].substr(0, 3)); break;
+				case "F": buffer.push(ProtoDate.MONTHS[this.getMonth()]); break;
+				case "M": buffer.push(ProtoDate.MONTHS[this.getMonth()].substring(0, 3)); break;
 				case "c": buffer.push(this.toISOString()); break;
 
 				// Ordinal suffix
@@ -125,8 +127,8 @@
 
 				// ISO-8601 Week number
 				case "W":
-					var startDate = new Date(this.getFullYear(), 0);
-					var endDate = new Date(this.getFullYear(), this.getMonth(), this.getDate());
+					var startDate = new ProtoDate(this.getFullYear(), 0);
+					var endDate = new ProtoDate(this.getFullYear(), this.getMonth(), this.getDate());
 					while(endDate.getDay() < 6) endDate.setDate(endDate.getDate()+1);
 					endDate = endDate.getTime();
 					var weekNo = 0;
@@ -139,7 +141,7 @@
 
 				// Day of the year
 				case "z":
-					var startDate = new Date(this.getFullYear(), 0, 1, 0, 0, 0, 0);
+					var startDate = new ProtoDate(this.getFullYear(), 0, 1, 0, 0, 0, 0);
 					var dayNo = 0;
 					while(startDate.getTime() < this.getTime()){
 						dayNo++;
@@ -195,7 +197,7 @@
  */
 (function(){
 	"use strict";
-	Date.validateFormat = function(dateStr, formatStr){
+	ProtoDate.validateFormat = function(dateStr, formatStr){
 		for(var i=0; i<formatStr.length; i++){
 			switch(formatStr[i]){
 				case "\\": 
@@ -256,9 +258,9 @@
 					break;
 				case "l":
 					var d = dateStr.toLowerCase(), day=false;
-					for(var n=0; n<Date.DAYS.length; n++){
-						if(!d.indexOf(Date.DAYS[n].toLowerCase())){
-							day = Date.DAYS[n];
+					for(var n=0; n<ProtoDate.DAYS.length; n++){
+						if(!d.indexOf(ProtoDate.DAYS[n].toLowerCase())){
+							day = ProtoDate.DAYS[n];
 							break;
 						}
 					}
@@ -267,17 +269,17 @@
 					break;
 				case "D":
 					var d = dateStr.toLowerCase(), abrlen = 0;
-					for(var n=0; n<Date.DAYS.length; n++){
-						if(Date.DAYS[n].length>6 && !d.indexOf(Date.DAYS[n].toLowerCase().substr(0,6))){
+					for(var n=0; n<ProtoDate.DAYS.length; n++){
+						if(ProtoDate.DAYS[n].length>6 && !d.indexOf(ProtoDate.DAYS[n].toLowerCase().substr(0,6))){
 							abrlen = 6; break;
 						}
-						if(!d.indexOf(Date.DAYS[n].toLowerCase().substr(0,5))){
+						if(!d.indexOf(ProtoDate.DAYS[n].toLowerCase().substr(0,5))){
 							abrlen = 5; break;
 						}
-						if(!d.indexOf(Date.DAYS[n].toLowerCase().substr(0,4))){
+						if(!d.indexOf(ProtoDate.DAYS[n].toLowerCase().substr(0,4))){
 							abrlen = 4; break;
 						}
-						if(!d.indexOf(Date.DAYS[n].toLowerCase().substr(0,3))){
+						if(!d.indexOf(ProtoDate.DAYS[n].toLowerCase().substr(0,3))){
 							abrlen = 3; break;
 						}
 					}
@@ -286,9 +288,9 @@
 					break;
 				case "F":
 					var m = dateStr.toLowerCase(), mm=false;
-					for(var n=0; n<Date.MONTHS.length; n++){
-						if(!m.indexOf(Date.MONTHS[n].toLowerCase())){
-							mm = Date.MONTHS[n];
+					for(var n=0; n<ProtoDate.MONTHS.length; n++){
+						if(!m.indexOf(ProtoDate.MONTHS[n].toLowerCase())){
+							mm = ProtoDate.MONTHS[n];
 							break;
 						}
 					}
@@ -297,9 +299,9 @@
 					break;
 				case "M":
 					var m = dateStr.toLowerCase(), mm=false;
-					for(var n=0; n<Date.MONTHS.length; n++){
-						if(!m.indexOf(Date.MONTHS[n].toLowerCase().substr(0,3))){
-							mm = Date.MONTHS[n];
+					for(var n=0; n<ProtoDate.MONTHS.length; n++){
+						if(!m.indexOf(ProtoDate.MONTHS[n].toLowerCase().substr(0,3))){
+							mm = ProtoDate.MONTHS[n];
 							break;
 						}
 					}
@@ -326,14 +328,14 @@
  */
 (function(){
 	"use strict";
-	Date.parse = function(dateStr, formatStr){
+	ProtoDate.parse = function(dateStr, formatStr){
 		if(!formatStr){
 			dateStr = dateStr.replace(/\W+/g, " ").trim();
-			formatStr = Date.guessFormat(dateStr);
+			formatStr = ProtoDate.guessFormat(dateStr);
 			if(!formatStr) return false;
 		}
-		if(!Date.validateFormat(dateStr, formatStr)) return false;
-		var now = new Date();
+		if(!ProtoDate.validateFormat(dateStr, formatStr)) return false;
+		var now = new ProtoDate();
 		var year = now.getFullYear(), 
 			month = now.getMonth(), 
 			day = now.getDate(), 
@@ -409,25 +411,25 @@
 					break;
 				case "l":
 					var d = dateStr.toLowerCase(), dd=false;
-					for(var n=0; n<Date.DAYS.length; n++){
-						dd = Date.DAYS[n];
+					for(var n=0; n<ProtoDate.DAYS.length; n++){
+						dd = ProtoDate.DAYS[n];
 						if(!d.indexOf(dd.toLowerCase())) break;
 					}
 					dateStr = dateStr.substr(dd.length);
 					break;
 				case "D":
 					var d = dateStr.toLowerCase(), abrlen = 0;
-					for(var n=0; n<Date.DAYS.length; n++){
-						if(Date.DAYS[n].length>6 && !d.indexOf(Date.DAYS[n].toLowerCase().substr(0,6))){
+					for(var n=0; n<ProtoDate.DAYS.length; n++){
+						if(ProtoDate.DAYS[n].length>6 && !d.indexOf(ProtoDate.DAYS[n].toLowerCase().substr(0,6))){
 							abrlen = 6; break;
 						}
-						if(!d.indexOf(Date.DAYS[n].toLowerCase().substr(0,5))){
+						if(!d.indexOf(ProtoDate.DAYS[n].toLowerCase().substr(0,5))){
 							abrlen = 5; break;
 						}
-						if(!d.indexOf(Date.DAYS[n].toLowerCase().substr(0,4))){
+						if(!d.indexOf(ProtoDate.DAYS[n].toLowerCase().substr(0,4))){
 							abrlen = 4; break;
 						}
-						if(!d.indexOf(Date.DAYS[n].toLowerCase().substr(0,3))){
+						if(!d.indexOf(ProtoDate.DAYS[n].toLowerCase().substr(0,3))){
 							abrlen = 3; break;
 						}
 					}
@@ -435,9 +437,9 @@
 					break;
 				case "F":
 					var m = dateStr.toLowerCase(), mm=false, idx=0;
-					for(var n=0; n<Date.MONTHS.length; n++){
-						if(!m.indexOf(Date.MONTHS[n].toLowerCase())){
-							mm = Date.MONTHS[n];
+					for(var n=0; n<ProtoDate.MONTHS.length; n++){
+						if(!m.indexOf(ProtoDate.MONTHS[n].toLowerCase())){
+							mm = ProtoDate.MONTHS[n];
 							idx = n;
 							break;
 						}
@@ -447,9 +449,9 @@
 					break;
 				case "M":
 					var m = dateStr.toLowerCase(), mm=false, idx =0;
-					for(var n=0; n<Date.MONTHS.length; n++){
-						if(!m.indexOf(Date.MONTHS[n].toLowerCase().substr(0,3))){
-							mm = Date.MONTHS[n];
+					for(var n=0; n<ProtoDate.MONTHS.length; n++){
+						if(!m.indexOf(ProtoDate.MONTHS[n].toLowerCase().substr(0,3))){
+							mm = ProtoDate.MONTHS[n];
 							break;
 						}
 					}
@@ -463,7 +465,7 @@
 			}
 		}
 		if(!am && !hr24) hours+=12;
-		return new Date(year, month, day, hours, minutes, seconds, milliseconds);
+		return new ProtoDate(year, month, day, hours, minutes, seconds, milliseconds);
 	};
 })();
 
@@ -473,19 +475,19 @@
  */
 (function(){
 	"use strict";
-	Date.prototype.elapsedSince = function (date) {
-		if(!Date.isDate(date)) return false;
+	ProtoDate.prototype.elapsedSince = function (date) {
+		if(!ProtoDate.isDate(date)) return false;
 		var ms = Math.abs(this.getTime() - date.getTime()), o={};
-		o.y = Math.floor(ms / Date.YEAR);
-		ms -= o.y * Date.YEAR;
-		o.d = Math.floor(ms / Date.DAY);
-		ms -= o.d * Date.DAY;
-		o.h = Math.floor(ms / Date.HOUR);
-		ms -= o.h * Date.HOUR;
-		o.m = Math.floor(ms / Date.MINUTE);
-		ms -= o.m * Date.MINUTE;
-		o.s = Math.floor(ms / Date.SECOND);
-		ms -= o.s * Date.SECOND;
+		o.y = Math.floor(ms / ProtoDate.YEAR);
+		ms -= o.y * ProtoDate.YEAR;
+		o.d = Math.floor(ms / ProtoDate.DAY);
+		ms -= o.d * ProtoDate.DAY;
+		o.h = Math.floor(ms / ProtoDate.HOUR);
+		ms -= o.h * ProtoDate.HOUR;
+		o.m = Math.floor(ms / ProtoDate.MINUTE);
+		ms -= o.m * ProtoDate.MINUTE;
+		o.s = Math.floor(ms / ProtoDate.SECOND);
+		ms -= o.s * ProtoDate.SECOND;
 		o.ms = ms;
 		o.verbose = function() {
 			var str = [];
@@ -508,7 +510,7 @@
  */
 (function(){
 	"use strict";
-	Date.prototype.minus = function(quantity, period){
+	ProtoDate.prototype.minus = function(quantity, period){
 		this.setTime(this.getTime() - (quantity * period));
 		return this;
 	};
@@ -520,7 +522,7 @@
  */
 (function(){
 	"use strict";
-	Date.prototype.plus = function(quantity, period){
+	ProtoDate.prototype.plus = function(quantity, period){
 		this.setTime(this.getTime() + (quantity * period));
 		return this;
 	};
@@ -532,23 +534,46 @@
  */
 (function(){
 	"use strict";
-	Date.guessFormat = function(dateStr){
+	ProtoDate.guessFormat = function(dateStr){
 		var tf, df, i, n;
-		for(n=0; n<Date.DATE_FORMATS.length; n++){
-			df = Date.DATE_FORMATS[n];
-			if(Date.validateFormat(dateStr, df)) return df;
+		for(n=0; n<ProtoDate.DATE_FORMATS.length; n++){
+			df = ProtoDate.DATE_FORMATS[n];
+			if(ProtoDate.validateFormat(dateStr, df)) return df;
 		}
-		for(i=0; i<Date.TIME_FORMATS.length; i++){
-			tf = Date.TIME_FORMATS[i];
-			if(Date.validateFormat(dateStr, tf)) return tf;
-			for(n=0; n<Date.DATE_FORMATS.length; n++){
-				df = Date.DATE_FORMATS[n];
-				if(Date.validateFormat(dateStr, df+" "+tf)) return df+" "+tf;
-				if(Date.validateFormat(dateStr, tf+" "+df)) return tf+" "+df;
+		for(i=0; i<ProtoDate.TIME_FORMATS.length; i++){
+			tf = ProtoDate.TIME_FORMATS[i];
+			if(ProtoDate.validateFormat(dateStr, tf)) return tf;
+			for(n=0; n<ProtoDate.DATE_FORMATS.length; n++){
+				df = ProtoDate.DATE_FORMATS[n];
+				if(ProtoDate.validateFormat(dateStr, df+" "+tf)) return df+" "+tf;
+				if(ProtoDate.validateFormat(dateStr, tf+" "+df)) return tf+" "+df;
 			}
 		}
 	};
 })();
 
+/**
+ * Get a native Date object from the ProtoDate object
+ * @returns {object}
+ */
+(function(){
+	"use strict";
+	ProtoDate.prototype.toDate = function () {
+		return new Date(this.getTime())
+	};
+})();
+
+/**
+ * Get a native Date object from the ProtoDate object
+ * @returns {object}
+ */
+(function(){
+	"use strict";
+	ProtoDate.fromDate = function (date) {
+		if(!ProtoDate.isDate(date)) throw new Error("ProtoDate.fromDate expects a Date object.");
+		return new ProtoDate(date.getTime());
+	};
+})();
+
 /* istanbul ignore next */
-if(!!(typeof module !== 'undefined' && module.exports)) module.exports = Date;
+if(!!(typeof module !== 'undefined' && module.exports)) module.exports = ProtoDate;

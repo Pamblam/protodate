@@ -4,7 +4,7 @@
  * @returns {String}
  */
 (function(){
-	Date.prototype.getTimezone = function(){
+	ProtoDate.prototype.getTimezone = function(){
 		return this._timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
 	};
 })();

@@ -1,6 +1,6 @@
  
 (function(){
-	Date.TZData = {
+	ProtoDate.TZData = {
 		// "zone_name": [["abbreviation", "time_start", "gmt_offset", "dst"],...]
 		"Africa/Abidjan": [
 			["GMT", -4260211200, 0, 0],

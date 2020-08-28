@@ -4,10 +4,10 @@
  * @returns {Date}
  */
 (function(){
-	Date.prototype.setTimezone = function(timezone){
+	ProtoDate.prototype.setTimezone = function(timezone){
 		var timestamp = this.getUnixTimestamp();
-		var tzdata = Date.getTZInfo(timestamp, timezone);
-		var date = new Date((timestamp+tzdata.gmt_offset)*1000);
+		var tzdata = ProtoDate.getTZInfo(timestamp, timezone);
+		var date = new ProtoDate((timestamp+tzdata.gmt_offset)*1000);
 		this.getFullYear=function(){return date.getUTCFullYear();};
 		this.getMonth=function(){return date.getUTCMonth();};
 		this.getDate=function(){return date.getUTCDate();};

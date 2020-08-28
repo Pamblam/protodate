@@ -7,8 +7,8 @@
  */
 (function(){
 	"use strict";
-	Date.prototype.format = function(format) {
-		if (!Date.isDate(this)) return false;
+	ProtoDate.prototype.format = function(format) {
+		if (!ProtoDate.isDate(this)) return false;
 		var buffer = []; 
 		for(var i=0; i<format.length; i++){
 			switch(format[i]){
@@ -20,7 +20,7 @@
 				case "y": buffer.push(("" + this.getFullYear()).substring(2)); break;
 				case "m": buffer.push(("0" + (this.getMonth() + 1)).substr(-2, 2)); break;
 				case "n": buffer.push("" + (this.getMonth() + 1)); break;
-				case "t": buffer.push("" + new Date(this.getFullYear(), this.getMonth() + 1, 0).getDate()); break; 
+				case "t": buffer.push("" + new ProtoDate(this.getFullYear(), this.getMonth() + 1, 0).getDate()); break; 
 				case "d": buffer.push(("0" + this.getDate()).substr(-2, 2)); break;
 				case "j": buffer.push(this.getDate() + ""); break;
 				case "w": buffer.push(this.getDay()); break;
@@ -41,10 +41,10 @@
 				// Symbols that represent text
 				case "a": buffer.push(this.getHours() > 11 ? "pm" : "am"); break;
 				case "A": buffer.push(this.getHours() > 11 ? "PM" : "AM"); break;
-				case "l": buffer.push(Date.DAYS[this.getDay()]); break;
-				case "D": buffer.push(Date.DAYS[this.getDay()].substr(0, 3)); break;
-				case "F": buffer.push(Date.MONTHS[this.getMonth()]); break;
-				case "M": buffer.push(Date.MONTHS[this.getMonth()].substring(0, 3)); break;
+				case "l": buffer.push(ProtoDate.DAYS[this.getDay()]); break;
+				case "D": buffer.push(ProtoDate.DAYS[this.getDay()].substr(0, 3)); break;
+				case "F": buffer.push(ProtoDate.MONTHS[this.getMonth()]); break;
+				case "M": buffer.push(ProtoDate.MONTHS[this.getMonth()].substring(0, 3)); break;
 				case "c": buffer.push(this.toISOString()); break;
 
 				// Ordinal suffix
@@ -65,8 +65,8 @@
 
 				// ISO-8601 Week number
 				case "W":
-					var startDate = new Date(this.getFullYear(), 0);
-					var endDate = new Date(this.getFullYear(), this.getMonth(), this.getDate());
+					var startDate = new ProtoDate(this.getFullYear(), 0);
+					var endDate = new ProtoDate(this.getFullYear(), this.getMonth(), this.getDate());
 					while(endDate.getDay() < 6) endDate.setDate(endDate.getDate()+1);
 					endDate = endDate.getTime();
 					var weekNo = 0;
@@ -79,7 +79,7 @@
 
 				// Day of the year
 				case "z":
-					var startDate = new Date(this.getFullYear(), 0, 1, 0, 0, 0, 0);
+					var startDate = new ProtoDate(this.getFullYear(), 0, 1, 0, 0, 0, 0);
 					var dayNo = 0;
 					while(startDate.getTime() < this.getTime()){
 						dayNo++;

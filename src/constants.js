@@ -1,23 +1,25 @@
 
+class ProtoDate extends Date{}
+
 (function(){
 	"use strict";
-	Date.MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-	Date.DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	Date.PROTODATE_VERSION = '{{ VERSION }}';
-	Date.MILLISECOND = 1;
-	Date.SECOND = 1000;
-	Date.MINUTE = 60000;
-	Date.HOUR = 3600000;
-	Date.DAY = 86400000;
-	Date.YEAR = 31536000000;
-	Date.TIME_FORMATS = [
+	ProtoDate.MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+	ProtoDate.DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+	ProtoDate.PROTODATE_VERSION = '{{ VERSION }}';
+	ProtoDate.MILLISECOND = 1;
+	ProtoDate.SECOND = 1000;
+	ProtoDate.MINUTE = 60000;
+	ProtoDate.HOUR = 3600000;
+	ProtoDate.DAY = 86400000;
+	ProtoDate.YEAR = 31536000000;
+	ProtoDate.TIME_FORMATS = [
 		"G00 \\h\\o\\u\\r\\s", "g \\o\\c\\l\\o\\c\\k", "g \\o \\c\\l\\o\\c\\k", 
 		"g i", "g i a", "g i A", "g i s", "g i s a", "g i s A", "h i", "h i a", 
 		"h i A", "h i s", "h i s a", "h i s A", "H i", "H i a", "H i A", "H i s", 
 		"G i", "G i a", "G i A", "G i s", "g i s v", "g i s a v", "g i s A v", 
 		"h i s v", "h i s a v", "h i s A v", "H i s v", "G i s v"
 	];
-	Date.DATE_FORMATS = [
+	ProtoDate.DATE_FORMATS = [
 		"y", "Y", "F", "M", "F Y", "F y", "M Y", "M y", "F jS Y", "F jS", 
 		"M jS Y", "M jS", "F j Y", "F j", "M j Y", "M j", "jS F Y", "jS F", 
 		"jS M Y", "jS M", "j F Y", "j F", "j M Y", "j M", "Y m d", "m d y", 

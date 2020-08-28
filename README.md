@@ -2,7 +2,7 @@
 
 ![Protodate Logo](https://i.imgur.com/rwU5zSL.png)
 
-[![npm version](https://badge.fury.io/js/protodate.svg)](https://badge.fury.io/js/protodate) [![build](https://api.travis-ci.org/Pamblam/protodate.svg?branch=master)](https://travis-ci.org/Pamblam/protodate) [![coverage](https://coveralls.io/repos/github/Pamblam/protodate/badge.svg?branch=master)](https://coveralls.io/github/Pamblam/protodate) v2.0.15
+[![npm version](https://badge.fury.io/js/protodate.svg)](https://badge.fury.io/js/protodate) [![build](https://api.travis-ci.org/Pamblam/protodate.svg?branch=master)](https://travis-ci.org/Pamblam/protodate) [![coverage](https://coveralls.io/repos/github/Pamblam/protodate/badge.svg?branch=master)](https://coveralls.io/github/Pamblam/protodate) v3.0.5
 
 Better Javascript Dates.
 

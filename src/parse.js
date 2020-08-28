@@ -5,14 +5,14 @@
  */
 (function(){
 	"use strict";
-	Date.parse = function(dateStr, formatStr){
+	ProtoDate.parse = function(dateStr, formatStr){
 		if(!formatStr){
 			dateStr = dateStr.replace(/\W+/g, " ").trim();
-			formatStr = Date.guessFormat(dateStr);
+			formatStr = ProtoDate.guessFormat(dateStr);
 			if(!formatStr) return false;
 		}
-		if(!Date.validateFormat(dateStr, formatStr)) return false;
-		var now = new Date();
+		if(!ProtoDate.validateFormat(dateStr, formatStr)) return false;
+		var now = new ProtoDate();
 		var year = now.getFullYear(), 
 			month = now.getMonth(), 
 			day = now.getDate(), 
@@ -88,25 +88,25 @@
 					break;
 				case "l":
 					var d = dateStr.toLowerCase(), dd=false;
-					for(var n=0; n<Date.DAYS.length; n++){
-						dd = Date.DAYS[n];
+					for(var n=0; n<ProtoDate.DAYS.length; n++){
+						dd = ProtoDate.DAYS[n];
 						if(!d.indexOf(dd.toLowerCase())) break;
 					}
 					dateStr = dateStr.substr(dd.length);
 					break;
 				case "D":
 					var d = dateStr.toLowerCase(), abrlen = 0;
-					for(var n=0; n<Date.DAYS.length; n++){
-						if(Date.DAYS[n].length>6 && !d.indexOf(Date.DAYS[n].toLowerCase().substr(0,6))){
+					for(var n=0; n<ProtoDate.DAYS.length; n++){
+						if(ProtoDate.DAYS[n].length>6 && !d.indexOf(ProtoDate.DAYS[n].toLowerCase().substr(0,6))){
 							abrlen = 6; break;
 						}
-						if(!d.indexOf(Date.DAYS[n].toLowerCase().substr(0,5))){
+						if(!d.indexOf(ProtoDate.DAYS[n].toLowerCase().substr(0,5))){
 							abrlen = 5; break;
 						}
-						if(!d.indexOf(Date.DAYS[n].toLowerCase().substr(0,4))){
+						if(!d.indexOf(ProtoDate.DAYS[n].toLowerCase().substr(0,4))){
 							abrlen = 4; break;
 						}
-						if(!d.indexOf(Date.DAYS[n].toLowerCase().substr(0,3))){
+						if(!d.indexOf(ProtoDate.DAYS[n].toLowerCase().substr(0,3))){
 							abrlen = 3; break;
 						}
 					}
@@ -114,9 +114,9 @@
 					break;
 				case "F":
 					var m = dateStr.toLowerCase(), mm=false, idx=0;
-					for(var n=0; n<Date.MONTHS.length; n++){
-						if(!m.indexOf(Date.MONTHS[n].toLowerCase())){
-							mm = Date.MONTHS[n];
+					for(var n=0; n<ProtoDate.MONTHS.length; n++){
+						if(!m.indexOf(ProtoDate.MONTHS[n].toLowerCase())){
+							mm = ProtoDate.MONTHS[n];
 							idx = n;
 							break;
 						}
@@ -126,9 +126,9 @@
 					break;
 				case "M":
 					var m = dateStr.toLowerCase(), mm=false, idx =0;
-					for(var n=0; n<Date.MONTHS.length; n++){
-						if(!m.indexOf(Date.MONTHS[n].toLowerCase().substr(0,3))){
-							mm = Date.MONTHS[n];
+					for(var n=0; n<ProtoDate.MONTHS.length; n++){
+						if(!m.indexOf(ProtoDate.MONTHS[n].toLowerCase().substr(0,3))){
+							mm = ProtoDate.MONTHS[n];
 							break;
 						}
 					}
@@ -142,6 +142,6 @@
 			}
 		}
 		if(!am && !hr24) hours+=12;
-		return new Date(year, month, day, hours, minutes, seconds, milliseconds);
+		return new ProtoDate(year, month, day, hours, minutes, seconds, milliseconds);
 	};
 })();
