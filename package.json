@@ -1,6 +1,6 @@
 {
   "name": "protodate",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "description": "Better Javascript Dates.",
   "main": "protodate.tz.min.js",
   "scripts": {
